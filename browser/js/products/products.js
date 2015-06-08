@@ -7,7 +7,7 @@ app.config(function($stateProvider){
 })
 
 app.controller('ProductsController', function($scope, productsFactory){
-	$scope.products;
+	$scope.products=[" ","3"];
 	// productsFactory.getAllProducts().then(function(productsArray){
 	// 	$scope.products = productsArray
 	// })
