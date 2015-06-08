@@ -1,0 +1,41 @@
+README:
+models:
+	Products
+		name: string
+		description: string
+		price: number
+		quantity: 
+		categories: array of strings [weapons, animals, passage on ship] image: 
+
+	User:
+	username
+	password
+	orders reference to a order
+	email
+	all orders ids array
+
+	orders model
+	user reference
+	array of {name: products references, quantity: num}
+	virtual total price
+
+
+
+
+views 
+homepage
+all products view where you can sort or filter
+single product view has desciption and price
+checkout
+cart view
+user account profile view
+login view
+admin view
+	editting database
+	CRUD
+	users only get RU
+
+<html>
+ui-view
+<product></product
+</html
