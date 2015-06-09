@@ -111,8 +111,6 @@ gulp.task('seedDB', function () {
     return dbConnected.then(function () {
         var User = require('mongoose').model('User');
         var Product = require('mongoose').model('Product');
-        User.find({}).remove();
-        Product.find({}).remove();
         return Product.create(products)
         .then(function(){
             return User.create(users);
