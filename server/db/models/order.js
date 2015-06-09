@@ -7,15 +7,25 @@ var orderSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    products: [{
-        product: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref:'Product'
-        },
-        quantity: {
-            type: Number
+
+    email: {
+        type: String,
+        required: true
+    },
+
+    products: [
+        {
+            product: {
+                type: mongoose.Schema.Types.ObjectId, 
+                ref:'Product'
+            },
+            quantity: {
+                type: Number
+            }
         }
-    }]
+    ],
+
+    isClosed: {type: Boolean, required: true}
 
 });
 
