@@ -1,3 +1,21 @@
 .product-directive {
 	float: left;
+	border-style: solid;
+	border-width: 2px;
+	margin: 5px;
+	
 }
+.product-text {
+	padding: 5px;
+}
+.product-img {
+	width: 200px;
+	height: 120px;
+	margin: 0 auto;
+	background-color: black;
+}
+img {
+    margin: auto;
+    display: block;
+    width: 100%;
+ }

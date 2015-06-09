@@ -1,9 +1,10 @@
 app.factory('productsFactory', function($http){
 	return {
 		getAllProducts : function() {
-			$http.get('/api/GETproducts/allproducts').
+			console.log("Hit get from factory")
+			return $http.get('/api/GETproducts/allproducts').
 		  success(function(data, status, headers, config) {
-		    console.log(data);
+		    console.log("data", data);
 		  }).
 		  error(function(data, status, headers, config) {
 		  	console.log(data);
