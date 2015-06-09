@@ -5,7 +5,7 @@ module.exports = router;
 
 router.get('/allproducts', function (req, res, next) {
    
-    var productModel = require(__dirname + "../../../../db/models/product.js");
+    var productModel = require('mongoose').model('Product');
  
     productModel.find().exec().then(function(data){
     	res.send(data);
