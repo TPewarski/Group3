@@ -11,7 +11,8 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
-router.get('/secret-stash', ensureAuthenticated, function (req, res) {
+router.get('/secret-stash', function (req, res) {
+// router.get('/secret-stash', ensureAuthenticated, function (req, res) {
 
     var theStash = [
         'http://ep.yimg.com/ay/candy-crate/bulk-candy-store-2.gif',

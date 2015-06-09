@@ -8,6 +8,7 @@ app.config(function($stateProvider){
 
 app.controller('ProductsController', function($scope, productsFactory){
 	$scope.products=[" ","3"];
+	$scope.click=productsFactory.getAllProducts;
 	// productsFactory.getAllProducts().then(function(productsArray){
 	// 	$scope.products = productsArray
 	// })
