@@ -1,0 +1,15 @@
+
+<div class="cart-container">
+	<div class="cart-item" ng-repeat="item in items">
+		<div class="cart-product-img">
+			<img src="{{ item.product.imgPath }}">
+		</div>
+		<div class='cart-product-name'>
+			<h2>{{ item.product.name }}</h2>
+		</div>
+		<div class='cart-product-price'>
+			<h2>{{ item.product.price }}
+		</div>
+
+	</div>
+</div>
