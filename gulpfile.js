@@ -73,11 +73,45 @@ gulp.task('seedDB', function () {
         { email: 'obama@gmail.com', password: 'potus' }
     ];
 
+
+    var products = [
+        {
+            name: "Dire Wolf",
+            description: "An unusually large and intelligent species of wolf. Great gift for children of all ages.",
+            price: 250000,
+            inventoryQuantity: 12,
+            categories: ['Animal', 'Dire Wolf'],
+            imgPath: "needAPath"
+        },
+
+        {
+            name: "Petrified Dragon Egg",
+            description: " The only remnant of an ancient race long thought extinct. Rumor has it that eggs have begun hatching in the East.",
+            price: 50000000,
+            inventoryQuantity: 1,
+            categories: ['Animal', 'Dragon',],
+            imgPath: "needAPath"
+        },
+        {
+            name: "Valyrian Steel Sword",
+            description: "A blade forged in the days of the mighty Valyrian Freehold. It is exceptionally sharp and tremondously strong, yet light, keeping its edge and requiring no maintenance.",
+            price: 1250000,
+            inventoryQuantity: 3,
+            categories: ['Weapon', 'Sword'],
+            imgPath: "needAPath"
+        },
+
+
+    ]
+
+
     var dbConnected = require('./server/db');
 
     return dbConnected.then(function () {
         var User = require('mongoose').model('User');
-        return User.create(users);
+        var Product = require('mongoose').model('Product')
+        return Product.create(products).then(function(){return User.create(users)})
+        
     }).then(function () {
         process.kill(0);
     }).catch(function (err) {

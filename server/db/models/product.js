@@ -22,7 +22,8 @@ var schema = new mongoose.Schema({
     },
     categories: {
         type: [String]
-    }
+    },
+    imgPath: String
 });
 
 
