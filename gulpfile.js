@@ -62,7 +62,7 @@ gulp.task('buildCSS', function () {
         .pipe(plumber())
         .pipe(sass())
         .pipe(rename('style.css'))
-        .pipe(gulp.dest('./public'))
+        .pipe(gulp.dest('./public'));
 });
 
 gulp.task('seedDB', function () {
@@ -70,7 +70,8 @@ gulp.task('seedDB', function () {
     var users = [
         { email: 'testing@fsa.com', password: 'testing123' },
         { email: 'joe@fsa.com', password: 'rainbowkicks' },
-        { email: 'obama@gmail.com', password: 'potus' }
+        { email: 'obama@gmail.com', password: 'potus' },
+        { email: 'imanadmin@admins.com', password: 'administrator', isAdmin: true}
     ];
 
 
@@ -109,8 +110,13 @@ gulp.task('seedDB', function () {
 
     return dbConnected.then(function () {
         var User = require('mongoose').model('User');
-        var Product = require('mongoose').model('Product')
-        return Product.create(products).then(function(){return User.create(users)})
+        var Product = require('mongoose').model('Product');
+        User.find({}).remove();
+        Product.find({}).remove();
+        return Product.create(products)
+        .then(function(){
+            return User.create(users);
+        });
         
     }).then(function () {
         process.kill(0);

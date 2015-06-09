@@ -50,16 +50,16 @@ module.exports = function (app) {
     app.put('/signup', function(req, res, next) {
         console.log(JSON.stringify(req.body));
 
-        // UserModel.findOne({email: req.body.something}, function(err, user) {
-        //     if(err) return next(err);
+        UserModel.findOne({email: req.body.email}, function(err, user) {
+            if(err) return next(err);
 
-        //     if(!user) {
-        //         var usr = new UserModel({email: req.body.something, password: req.body.something}).save(function(err) {
-        //             if(err) res.send(err);
-        //             else res.send("Signup Successful!");
-        //         });
-        //     }
-        // });
+            if(!user) {
+                var usr = new UserModel({email: req.body.email, password: req.body.password}).save(function(err) {
+                    if(err) res.send(err);
+                    else res.send("Signup Successful!");
+                });
+            }
+        });
 
     });
 
