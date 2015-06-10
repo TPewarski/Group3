@@ -83,6 +83,15 @@
                 });
         };
 
+        this.signup = function(credentials) {
+            return $http.put('/signup', credentials)
+            // .then(function(response){ 
+            //     console.log(response)})
+            .catch(function(){
+                return $q.reject({message:"Please Choose Another Email."});
+            });
+        }
+
         this.logout = function () {
             return $http.get('/logout').then(function () {
                 Session.destroy();

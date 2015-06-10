@@ -4,10 +4,12 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
     email: {
-        type: String
+        type: String,
+        required: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     salt: {
         type: String
@@ -23,7 +25,17 @@ var schema = new mongoose.Schema({
     },
     google: {
         id: String
-    }
+    },
+    cart: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order'
+    },
+    orderHistory: [
+    {type: mongoose.Schema.Types.ObjectId,
+     ref: 'Order'}
+    ],
+    isAdmin: Boolean
+
 });
 
 // var mode = Mongoose.mode(user)
