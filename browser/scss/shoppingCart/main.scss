@@ -1,0 +1,23 @@
+.cart-container{
+	@include clearfix;
+
+	.img {
+		width: 100%;
+	}
+	.cart-product-name{
+		float: left;
+	}
+	.select-quantity {
+		float: right;
+		margin-top: 25px;
+		margin-right: 10px;
+	}
+	.cart-product-price {
+		float: right;
+		margin-right: 10px;
+	}
+
+}
+.total-price {
+	float: right;
+}

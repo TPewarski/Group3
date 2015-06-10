@@ -10,7 +10,7 @@ app.factory('productsFactory', function($http){
         },
 
 		getAllProducts : function() {
-			console.log("Hit get from factory")
+			// console.log("Hit get from factory")
 			return $http.get('/api/GETproducts/allproducts').
 		  success(function(data, status, headers, config) {
 		    console.log("data", data);
@@ -18,6 +18,25 @@ app.factory('productsFactory', function($http){
 		  error(function(data, status, headers, config) {
 		  	console.log(data);
 		  });
+		},
+		getInventoryQuantity: function(productName){
+			var queryParams = {}
+			queryParams.name = productName
+			return $http({
+				url: '/api/GETproducts/inventoryQuantity',
+				method: 'GET',
+				params: {name: queryParams.name}
+			}).then(function(data){
+				console.log("data", data)
+			}, function(err){
+				console.log("err", err)
+			})
+			  // .success(function(data, status, headers, config) {
+			  //   console.log("data", data);
+			  // })
+			  // .error(function(data, status, headers, config) {
+			  // 	console.log("error", data);
+			  // });
 		}
 	}
 })

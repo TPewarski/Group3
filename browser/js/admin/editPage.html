@@ -1,0 +1,32 @@
+<div class='singleProductContainer'>
+	<!-- product name container is floating so singleproduct container is only -->
+	<div class="product-name-container">
+		<h1>{{ product.name }}</h1>
+		<div class='product-img-container'>
+			<img src="{{ product.imgPath }}">
+		</div>
+	</div>
+	<div class="product-details-container" ng-controller="AdminController" ng-submit="submitEdit">
+		<form name="editProductForm" id="editProductForm">
+			
+			<p><strong>Description:</strong> 
+				<span>{{ product.description }} 
+			</p>
+			<br>
+			<p><strong>Price:</strong> <span>{{ product.price }} </p>
+			<br>
+			<p><strong>Number in Stock:</strong> <span>{{ product.inventoryQuantity }} </p>
+
+
+			<label for="description">Description:</label><br>
+			<!-- <input type="text" name="description" id="description" value={{product.description}}> -->
+
+			<textarea rows="4" cols="50" name="description" form="editProductForm">
+				{{product.description}}
+			</textarea>
+
+			<input type="submit" value="Submit Changes">
+
+		</form>
+	</div>
+</div>
