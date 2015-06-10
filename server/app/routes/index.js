@@ -6,6 +6,7 @@ module.exports = router;
 router.use('/GETproducts', require('./products'));
 router.use('/tutorial', require('./tutorial'));
 router.use('/members', require('./members'));
+router.use('/admin', require('./admin'));
 
 
 // Make sure this is after all of
