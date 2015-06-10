@@ -10,5 +10,7 @@ app.controller('CartController', function($scope, cartFactory){
 	console.log("hello WOrld")
     $scope.items = cartFactory.items
 
+    $scope.totalPrice = cartFactory.totalPrice($scope.items)
 
-})
+
+});
