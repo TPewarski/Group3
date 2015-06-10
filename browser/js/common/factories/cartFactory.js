@@ -10,17 +10,18 @@ app.factory('cartFactory', function($http){
             categories: ['Animal', 'Dire Wolf'],
             imgPath: "https://kaylahoailinh.files.wordpress.com/2014/10/wallpaper-hd-dire-wolf-hd-cool-7-hd-wallpapers.jpeg?w=726&h=203"
         },
-        quantity: 1}
+        quantity: 3}
         ],
 
         totalPrice: function(arr){
-            console.log("hit total price")
             var cost = 0
             arr.forEach(function(item){
                 cost += item.product.price * item.quantity
             })
             return cost
         }
+
+
 		//userId or session ID
 	}
 })
