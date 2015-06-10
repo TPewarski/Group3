@@ -9,17 +9,19 @@ app.config(function($stateProvider){
 app.controller('ProductsController', function($scope, productsFactory, $state, AuthService, AdminFactory){
 	$scope.theUser;
 	$scope.adminLoggedIn;
+	$scope.products;
+	
+	productsFactory.getAllProducts().then(function(productsArray){
+		$scope.products = productsArray.data;
+
 	AuthService.getLoggedInUser().then(function(user){
 		$scope.theUser = user;
 		$scope.adminLoggedIn = user.isAdmin;
 		console.log(user.isAdmin);
 	});
 
-	$scope.products;
-	productsFactory.getAllProducts().then(function(productsArray){
-		$scope.products = productsArray.data;
-		console.log("scope.products", $scope.products);
-	});
+
+		
 
 
 	$scope.selectAndRedirect = function(){
