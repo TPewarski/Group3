@@ -3,7 +3,15 @@ var router = require('express').Router();
 module.exports = router;
 var productModel = require('mongoose').model('Product');
 
-
+router.get('/', function(req, res){
+    console.log("req.query", req.query)
+    productModel.find(req.query).exec().then(function(data){
+        res.send(data)
+    }, function(err){
+        console.log("error in find route", err)
+        res.send(err)
+    })
+})
 router.get('/allproducts', function (req, res, next) {
    
  
@@ -17,7 +25,7 @@ router.get('/allproducts', function (req, res, next) {
 });
 
 router.get('/:id', function(req, res){
-    console.log(req.params)
+    //console.log(req.params)
     productModel.findById(req.params.id).exec().then(function(data){
         res.send(data)
     }, function(err){
