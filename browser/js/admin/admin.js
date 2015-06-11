@@ -27,22 +27,21 @@ app.factory('AdminFactory', function($http) {
 
 app.controller('AdminController', function($scope, AdminFactory, $stateParams, productsFactory, $state) {
 
-	console.log("thescope", $scope.products);
+	productsFactory.getAllProducts().then(function(productsArray){
+		$scope.products = productsArray.data;
 
-	// $scope.products.forEach(function(aProd) {
-	// 	if(aProd._id === $stateParams.theID) {
-	// 		console.log("a Prod", aProd);
-	// 		$scope.currentMed = aProd;
-	// 	}
-	// });	
+		$scope.products.forEach(function(aProd) {
+			if(aProd._id === $stateParams.theID) {
+				console.log("a Prod", aProd);
+				$scope.currentMed = aProd;
+			}
+		});	
 
-
-	// $scope.product = productsFactory.getById$stateParams.theID)
-	$scope.submitEdit = function(){
-		console.log($stateParams);
-		AdminFactory.editProduct($scope.currentMed);
-	};
-
+		$scope.submitEdit = function(){
+			console.log($stateParams);
+			AdminFactory.editProduct($scope.currentMed);
+		};
+	});
 
 
 });
