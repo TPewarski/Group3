@@ -8,6 +8,7 @@ router.use('/tutorial', require('./tutorial'));
 router.use('/members', require('./members'));
 router.use('/admin', require('./admin'));
 router.use('/users', require('./users'));
+router.use('/orders', require('./orders'));
 
 
 // Make sure this is after all of
