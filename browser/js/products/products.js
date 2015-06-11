@@ -16,8 +16,9 @@ app.controller('ProductsController', function($scope, productsFactory, $state, A
 
 	AuthService.getLoggedInUser().then(function(user){
 		$scope.theUser = user;
-		$scope.adminLoggedIn = user.isAdmin;
-		console.log(user.isAdmin);
+		
+		if(user) $scope.adminLoggedIn = user.isAdmin;
+		// console.log(user.isAdmin);
 	});
 
 
@@ -36,4 +37,5 @@ app.controller('ProductsController', function($scope, productsFactory, $state, A
 	// };
 	
 
-});
+	});
+})	
