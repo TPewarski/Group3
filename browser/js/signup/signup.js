@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('SignupCtrl', function ($scope, AuthService, $state) {
+app.controller('SignupCtrl', function ($scope, AuthService, $state, $window) {
 
     $scope.login = {};
     $scope.error = null;
@@ -24,4 +24,9 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state) {
         });
 
     };
+
+    $scope.signUpGoogle = function(){
+       // AuthService.loginGoogle();
+       $window.location.href = "/auth/google";
+        }
 });
