@@ -3,27 +3,27 @@
 	<div class="product-name-container">
 		<h1>{{ product.name }}</h1>
 		<div class='product-img-container'>
-			<img src="{{ product.imgPath }}">
+			<img src="{{product.imgPath}}">
 		</div>
 	</div>
-	<div class="product-details-container" ng-controller="AdminController" ng-submit="submitEdit">
+	<div class="product-details-container" ng-controller="AdminController" ng-submit="submitEdit()">
 		<form name="editProductForm" id="editProductForm">
-			
-			<p><strong>Description:</strong> 
-				<span>{{ product.description }} 
-			</p>
-			<br>
-			<p><strong>Price:</strong> <span>{{ product.price }} </p>
-			<br>
-			<p><strong>Number in Stock:</strong> <span>{{ product.inventoryQuantity }} </p>
 
+			<div>
+				<label for="description">Description:</label><br>
+				<textarea rows="4" cols="50" name="description" form="editProductForm" ng-model="currentMed.description">
+				</textarea>
+			</div>
 
-			<label for="description">Description:</label><br>
-			<!-- <input type="text" name="description" id="description" value={{product.description}}> -->
+			<div>
+				<label for="price">Price</label>
+				<input name="price" id="price" ng-model="currentMed.price"> 
+			</div>
 
-			<textarea rows="4" cols="50" name="description" form="editProductForm">
-				{{product.description}}
-			</textarea>
+			<div>
+				<label for="stock">Number In Stock</label>
+				<input name="stock" id="stock" ng-model="currentMed.inventoryQuantity"> 
+			</div>			
 
 			<input type="submit" value="Submit Changes">
 

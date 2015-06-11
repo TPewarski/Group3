@@ -18,7 +18,6 @@ app.controller('ProductsController', function($scope, productsFactory, $state, A
 		$scope.theUser = user;
 		
 		if(user) $scope.adminLoggedIn = user.isAdmin;
-		// console.log(user.isAdmin);
 	});
 
 
