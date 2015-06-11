@@ -24,4 +24,4 @@ app.factory('cartFactory', function($http){
 
 		//userId or session ID
 	}
-})
+});

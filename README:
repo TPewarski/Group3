@@ -39,3 +39,14 @@ admin view
 ui-view
 <product></product
 </html
+
+
+code review #1
+rename getAll products should be renamed to just /
+
+error handler can just be next(err)
+avoid commiting console.logs
+email mode??
+product in products model might be confusing
+typo in inventory quantity "defaut"
+cart should be a subdocument of the order document. instead of an embedded reference to an id. embed the data itself in whats called a subdocument. that makes since as
