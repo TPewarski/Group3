@@ -18,7 +18,6 @@ app.controller('ProductsController', function($scope, productsFactory, $state, A
 		$scope.theUser = user;
 		
 		if(user) $scope.adminLoggedIn = user.isAdmin;
-		// console.log(user.isAdmin);
 	});
 
 
@@ -29,12 +28,6 @@ app.controller('ProductsController', function($scope, productsFactory, $state, A
 		productsFactory.singleProduct = this.product;
 		$state.go('singleProduct');
 	};
-
-	// $scope.editProduct = function(){
-	// 	if($scope.adminLoggedIn){
-	// 		$state.go('editpage');
-	// 	}
-	// };
 	
 
 	});

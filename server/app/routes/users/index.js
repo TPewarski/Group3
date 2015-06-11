@@ -1,10 +1,9 @@
-'use strict';
 var router = require('express').Router();
 module.exports = router;
-var productModel = require('mongoose').model('Product');
+var userModel = require('mongoose').model('User');
 
 router.get('/', function(req, res){
-    productModel.find(req.query).exec().then(function(data){
+    userModel.find(req.query).exec().then(function(data){
         res.send(data)
     }, function(err){
         console.log("error in find route", err)
@@ -13,12 +12,9 @@ router.get('/', function(req, res){
 })
 
 router.get('/:id', function(req, res){
-    console.log("req.params.id", req.params.id)
-
-    productModel.findById(req.params.id).exec().then(function(data){
+    userModel.findById(req.params.id).exec().then(function(data){
         res.send(data)
     }, function(err){
         res.send(err)
     })
 })
-

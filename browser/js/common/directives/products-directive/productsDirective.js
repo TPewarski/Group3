@@ -9,12 +9,12 @@ app.directive('product', function() {
 });
 
 
-app.controller('ProductDirectiveController', function($scope, productsFactory, $state, AuthService, AdminFactory){
+app.controller('ProductDirectiveController', function($scope, productsFactory, $state, AuthService, AdminFactory, $stateParams){
+
 	$scope.editProduct = function(){
 		if($scope.adminLoggedIn){
-			console.log($scope.product);
-			AdminFactory.presentEdit = $scope.product;
-			$state.go('editpage');
+
+			$state.go('editpage', {theID: $scope.product._id});
 		}
 	};
 	
