@@ -83,6 +83,11 @@
                 });
         };
 
+        this.loginGoogle = function(){
+            return $http.get('/auth/google')
+            .then(onSuccessfulLogin);
+        }
+
         this.signup = function(credentials) {
             return $http.put('/signup', credentials)
             // .then(function(response){ 

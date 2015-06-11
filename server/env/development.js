@@ -12,8 +12,8 @@ module.exports = {
     "callbackURL": "INSERT_FACEBOOK_CALLBACK_HERE"
   },
   "GOOGLE": {
-    "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
-    "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
-    "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
+    "clientID": "679473887242-gsp17ueu3g7eesipdn75obmr6tujj5j5.apps.googleusercontent.com",
+    "clientSecret": "_Paz8syhT0YFyiMquI4J8IuW",
+    "callbackURL": "http://localhost:1337/auth/google/callback"
   }
 };
