@@ -15,6 +15,16 @@ router.get('/allproducts', function (req, res, next) {
     
 
 });
+
+router.get('/:id', function(req, res){
+    console.log(req.params)
+    productModel.findById(req.params.id).exec().then(function(data){
+        res.send(data)
+    }, function(err){
+        res.send(err)
+    })
+})
+
 router.get('/inventoryQuantity', function (req, res, next) {
     var modelParams = {};
     modelParams.name = req.query.name;
