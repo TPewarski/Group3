@@ -1,6 +1,6 @@
 app.config(function($stateProvider){
 	$stateProvider.state('editpage', {
-		url: '/editpage',
+		url: '/editpage/:theID',
 		controller: 'AdminController',
 		templateUrl: 'js/admin/editPage.html',
 		data: {authenticate: true}
@@ -25,6 +25,23 @@ app.factory('AdminFactory', function($http) {
 	};
 });
 
-app.controller('AdminController', function($scope, AdminFactory) {
-	$scope.product = AdminFactory.presentEdit;
+app.controller('AdminController', function($scope, AdminFactory, $stateParams, productsFactory, $state) {
+
+	productsFactory.getAllProducts().then(function(productsArray){
+		$scope.products = productsArray.data;
+
+		$scope.products.forEach(function(aProd) {
+			if(aProd._id === $stateParams.theID) {
+				console.log("a Prod", aProd);
+				$scope.currentMed = aProd;
+			}
+		});	
+
+		$scope.submitEdit = function(){
+			console.log($stateParams);
+			AdminFactory.editProduct($scope.currentMed);
+		};
+	});
+
+
 });
