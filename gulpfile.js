@@ -80,7 +80,7 @@ gulp.task('seedDB', function () {
 
     var products = [
         {
-            _id: "ZZZKKKKKK1639b9123456789",
+            _id: "111111111111111111111111",
             name: "NEXIUM (Esomeprazole) 40mg",
             description: "ESOMEPRAZOLE prevents the production of acid in the stomach. It is used to treat gastroesophageal reflux disease (GERD), ulcers, certain bacteria in the stomach, and inflammation of the esophagus. It can also be used to prevent ulcers in patients taking medicines called NSAIDs.",
             price: 250000,
@@ -88,8 +88,9 @@ gulp.task('seedDB', function () {
             categories: ['Heart Burn', 'GERD'],
             imgPath: "http://images.medscape.com/pi/features/drugdirectory/octupdate/ZNC50400.jpg"
         },
+
         {
-            _id: "ZZZKKKKKK1639b95c88e0703",
+            _id: "222222222222222222222222",
             name: "Prozium",
             description: "At the cost of the dizzying highs of human emotion, we have suppressed its abysmal lows. Prozium. Now we are at peace with ourselves and human kind is one. War is gone. Hate, a memory. We are our own conscience now, and it is this conscience that guides us to rate EC-10, for emotional content, all those things that might tempt us to feel, again, and destroy them.",
             price: 42,
@@ -98,7 +99,6 @@ gulp.task('seedDB', function () {
             imgPath: "http://i.imgur.com/Y4d3ClC.jpg"
         },
         {
-            _id: "0000000000639b95c88e0703",
             name: "Celebrex 200mg",
             description: "CELEBREX® (celecoxib) is FDA approved to treat the signs and symptoms of osteoarthritis (OA) and rheumatoid arthritis (RA), and for the management of acute pain in adults. It is a type of NSAID — a prescription-strength nonsteroidal anti-inflammatory drug. Prescription CELEBREX has been an arthritis treatment option for millions of patients for over 15 straight years. CELEBREX is not a narcotic.",
             price: 100,
@@ -142,9 +142,13 @@ gulp.task('seedDB', function () {
                 return Order.create({ //CREATE ORDER HERE, LINKED TO THE USER cart
                     user: obj._id,
                     cart: [{
-                        _id: "0000000000639b95c88e0703"
+                        name: "Viagra",
+                        price: 2.00,
+                        quantity: 100
                     },{
-                        _id: "ZZZKKKKKK1639b95c88e0703"
+                        name: "Ibuprofen",
+                        price: 5.00,
+                        quantity: 420  
                     }]
                 }).then(function(){
                     //LINK UP THE ORDER ABOVE WITH THE USER cart@cart.com here

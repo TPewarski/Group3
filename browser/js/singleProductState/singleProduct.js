@@ -1,21 +1,29 @@
 app.config(function($stateProvider){
 	$stateProvider.state('singleProduct', {
-		url: '/selectedProduct',
+		url: '/item/:theID',
 		controller: 'SingleProductController',
 		templateUrl: 'js/singleProductState/singleProduct.html'
-	})
-})
+	});
+});
 
-app.controller('SingleProductController', function($scope, productsFactory, cartFactory){
-	$scope.product = productsFactory.singleProduct;
+app.controller('SingleProductController', function($scope, productsFactory, cartFactory, $stateParams, $state){
+	console.log("i has it", $scope.products);
+	productsFactory.getAllProducts().then(function(productsArray) {
+		$scope.products = productsArray.data;
+
+		$scope.products.forEach(function(aProd) {
+			if(aProd._id === $stateParams.theID) {
+				$scope.anItem = aProd;
+			}
+		});	
+		console.log("an item", $scope.anItem);
+	});
 
 	$scope.addToCart = function(){
-		var cartItem = {}
-		cartItem.product = $scope.product
-		cartItem.quantity = 1
-		// console.log("cartItem", cartItem)
-		cartFactory.items.push(cartItem)
-		// console.log("cartFactorys.items", cartFactory.items)
-	}
+		var cartItem = {};
+		cartItem.product = $scope.product;
+		cartItem.quantity = 1;
+		cartFactory.items.push(cartItem);
+	};
 
-})
+});

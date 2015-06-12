@@ -9,8 +9,8 @@ app.config(function($stateProvider){
 
 app.factory('AdminFactory', function($http) {
 	return {
-		editProduct: function(selectedProd) {
-			return $http.post('?', selectedProd).
+		editProduct: function(currentMedEdit) {
+			return $http.post('/api/admin/editpage', currentMedEdit).
 				success(function(data, status, headers, config) {
 					console.log(data, status, headers, config);
 				}).
@@ -18,10 +18,15 @@ app.factory('AdminFactory', function($http) {
 					console.log(data, status, headers, config);
 				});
 		},
-
-		presentEdit: null
-
-
+		deleteProduct: function(curentMedDelete) {
+			return $http.delete('/api/admin/deletepage', curentMedDelete).
+			success(function(data, status, headers, config) {
+					console.log(data, status, headers, config);
+				}).
+				error(function(data, status, headers, config) {
+					console.log(data, status, headers, config);
+				});
+		}
 	};
 });
 
@@ -32,14 +37,19 @@ app.controller('AdminController', function($scope, AdminFactory, $stateParams, p
 
 		$scope.products.forEach(function(aProd) {
 			if(aProd._id === $stateParams.theID) {
-				console.log("a Prod", aProd);
 				$scope.currentMed = aProd;
 			}
 		});	
 
 		$scope.submitEdit = function(){
-			console.log($stateParams);
 			AdminFactory.editProduct($scope.currentMed);
+			$state.go("products");
+		};
+
+		$scope.deleteMed = function(){
+			AdminFactory.deleteProduct($scope.currentMed);
+			console.log("delete me", $scope.currentMed);
+			$state.go("products");
 		};
 	});
 

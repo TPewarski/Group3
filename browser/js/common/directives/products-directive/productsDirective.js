@@ -10,13 +10,16 @@ app.directive('product', function() {
 
 
 app.controller('ProductDirectiveController', function($scope, productsFactory, $state, AuthService, AdminFactory, $stateParams){
-
-	$scope.editProduct = function(){
+	
+	$scope.editProduct = function() {
 		if($scope.adminLoggedIn){
-
 			$state.go('editpage', {theID: $scope.product._id});
 		}
 	};
 	
+	$scope.goToProduct = function() {
+		console.log($scope.product);
+		$state.go('singleProduct', {theID: $scope.product._id});
+	};
 
 });
