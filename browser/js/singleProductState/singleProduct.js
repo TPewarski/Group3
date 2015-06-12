@@ -8,7 +8,6 @@ app.config(function($stateProvider){
 
 app.controller('SingleProductController', function($scope, productsFactory, cartFactory, $stateParams, $state){
 	
-	
 	productsFactory.getAllProducts().then(function(productsArray) {
 		$scope.products = productsArray.data;
 
@@ -21,11 +20,9 @@ app.controller('SingleProductController', function($scope, productsFactory, cart
 	});
 
 	$scope.addToCart = function(id){
-		
-		cartFactory.items.push({id:id,quant:1});
 
-		
-
+		// $cookies.put("key", "val");
+		cartFactory.add({id:id,quant:1});
 	};
 
 });
