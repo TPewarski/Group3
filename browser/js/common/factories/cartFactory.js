@@ -45,10 +45,16 @@ app.factory('cartFactory', function($http, $q){
         },
         get: function(){
             this.items = localGetCart();
-            this.itemIDindex = this.items.map(function(item){
-                return item.id;
-            })
-            return this.items;
+            if(this.items){
+                this.itemIDindex = this.items.map(function(item){
+                    return item.id;
+                })
+                return this.items;
+            } else {
+                localSetCart([]);
+                return new Array();
+            }
+            
         },
         getAllCartItems: function(item){
             if(!item) return [];
