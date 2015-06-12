@@ -1,29 +1,45 @@
 
 <!-- we are probs going to want to make this a form -->
 <div class="cart-container">
-	<div class="cart-item" ng-repeat="item in items">
-		<div class="cart-product-img col-md-3 col-sm-3 col-lg-3">
-			<p>img will be here but I am still not good at css</p>
-			<!-- <img src="{{ item.product.imgPath }}"> -->
-		</div>
-		<div class='cart-product-name'>
-			<h2>{{ item.product.name }}</h2>
-		</div>
-		<div class='cart-product-price'>
-			<h2>{{ item.product.price }}</h2>
-		</div>
-		<div class="select-quantity">
-	
-			<select ng-model="item.quantity">
-				<option ng-repeat="num in potentialQuantities(item.product.inventoryQuantity +1)" value="{{ num }}">{{ num }}</option>
 
-			</select>
-		</div>
+
+
+	<div class="cart-item" ng-repeat="item in items">
+		<div class="cart-product-img col-md-6 col-sm-12 col-lg-3">
+			<div class="product-img">
+				<img src="{{item.product.imgPath}}">
+			</div>
+			<!-- <img src="{{ item.product.imgPath }}"> -->
+		
+			<div class='cart-product-name'>
+				<p>{{ item.product.name }}</p>
+			</div>
+			<div class='cart-product-price'>
+				<p>{{ item.product.price }}</p>
+			</div>
+			<div>
+				<input type="text" value="{{item.quant}}">
+			</div>
+
+
+<!-- 			<div class="select-quantity">
+		
+				<select ng-model="item.quantity">
+					<option ng-repeat="num in potentialQuantities(item.product.inventoryQuantity +1)" value="{{ num }}">{{ num }}</option>
+
+				</select>
+			</div> -->
 
 		<!-- <select ng-options="item in inventoryQuantity()" ng-model="item.quantity" -->
-
+		</div>
 	</div>
+
+
+
+
+
+
 </div>
 <div class="total-price">
-	<h2> Total Price: {{ totalPrice }}</h2>
+	<h2> Total Price: ${{ totalPrice }}</h2>
 </div>

@@ -7,6 +7,7 @@ app.config(function($stateProvider){
 });
 
 app.controller('SingleProductController', function($scope, productsFactory, cartFactory, $stateParams, $state){
+
 	productsFactory.getAllProducts().then(function(productsArray) {
 		$scope.products = productsArray;
 
@@ -15,14 +16,12 @@ app.controller('SingleProductController', function($scope, productsFactory, cart
 				$scope.anItem = aProd;
 			}
 		});	
-		// console.log("an item", $scope.anItem);
 	});
 
-	$scope.addToCart = function(){
-		var cartItem = {};
-		cartItem.product = $scope.product;
-		cartItem.quantity = 1;
-		cartFactory.items.push(cartItem);
+	$scope.addToCart = function(id){
+
+		// $cookies.put("key", "val");
+		cartFactory.add({id:id,quant:1});
 	};
 
 });

@@ -8,21 +8,13 @@ var orderSchema = new mongoose.Schema({
         ref: 'User'
     },
     cart: [{
-        //This object inside of cart[] is an identical copy of product.
-        //It is being kept separate to maintain historical data. So
-        //as prices fluctuate via admin control panel, the old order prices
-        //will not change. 
-            _id: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref:'Product'
-            },
             name: { //Name of the product.
                 type: String,
                 required: true
             },
             price: {
                 type: Number,
-                default: 999999999.99
+                default: 1.99
             },
             quantity: {
                 type: Number, default: 0
@@ -36,9 +28,13 @@ var orderSchema = new mongoose.Schema({
     dateShipped: { type:Date }
 });
 
-orderSchema.post('save', function(doc){
-    console.log('%s has been saved', doc);
-})
+// orderSchema.post('save', function(doc){
+//     console.log('%s has been saved', 
+//         Product.find
+
+
+//         );
+// })
 
 var Order = mongoose.model('Order', orderSchema);
 
