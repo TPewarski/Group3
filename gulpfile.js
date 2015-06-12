@@ -69,7 +69,7 @@ gulp.task('buildCSS', function () {
 gulp.task('seedDB', function () {
 
     var users = [
-        { email: 'testing@fsa.com', password: 'testing123' },
+        { email: 'cart@cart.com', password: 'cart' },
         { email: 'joe@fsa.com', password: 'rainbowkicks' },
         { email: 'obama@gmail.com', password: 'potus' },
         { email: 'imanadmin@admins.com', password: 'administrator', isAdmin: true},
@@ -112,6 +112,7 @@ gulp.task('seedDB', function () {
     var dbConnected = require('./server/db');
     var User = require('mongoose').model('User');
     var Product = require('mongoose').model('Product');
+    var Order = require('mongoose').model('Order');
 
     return dbConnected
         .then(function () {
@@ -125,6 +126,24 @@ gulp.task('seedDB', function () {
         })
         .then(function(){
             return Product.create(products);
+        })
+        .then(function(){
+
+            return User.findOne({email: "cart@cart.com" }, function(err, obj){
+                if(err) console.log("FUCKING HELL!!! ---->", err);
+                return Order.create({
+                    user: obj._id,
+                    cart: [{
+                        name: "Viagra",
+                        price: 2.00,
+                        quantity: 100
+                    },{
+                        name: "Ibuprofen",
+                        price: 5.00,
+                        quantity: 420  
+                    }]
+                });
+            }).exec();
         })
         .then(function () {
             console.log("USE 'a@a.com' PASSWORD 'a' for admin account. USE 'u@u.com' PASSWORD 'u' FOR PLEBIAN");

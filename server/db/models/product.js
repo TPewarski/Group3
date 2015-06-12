@@ -11,14 +11,14 @@ var schema = new mongoose.Schema({
         type: String
     },
     price: {
-        type: String,
+        type: Number,
         required: true,
         default: 0.00
     },
     inventoryQuantity: {
         type: Number,
         required: true,
-        defaut: 0.00
+        default: 0.00
     },
     categories: {
         type: [String]

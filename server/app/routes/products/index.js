@@ -7,18 +7,27 @@ router.get('/', function(req, res){
     productModel.find(req.query).exec().then(function(data){
         res.send(data)
     }, function(err){
-        console.log("error in find route", err)
         res.send(err)
     })
-})
+});
 
 router.get('/:id', function(req, res){
-    console.log("req.params.id", req.params.id)
-
     productModel.findById(req.params.id).exec().then(function(data){
         res.send(data)
     }, function(err){
         res.send(err)
     })
-})
+});
 
+router.post('/', function(req, res){
+    var product = req.body;
+    productModel.create(product).then(function(createdProduct){
+        res.send(createdProduct);
+    }, function(err){
+        res.status(500).send(err.message);
+    });
+});
+
+router.put('/:id', function(req, res){
+    productModel.update({_id: req.params.id}, req.body);
+});
