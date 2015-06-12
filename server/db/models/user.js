@@ -4,10 +4,11 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
     email: {
-        type: String
+        type: String,
+        required: true
     },
     password: {
-        type: String
+        type: String,
     },
     salt: {
         type: String
@@ -24,10 +25,15 @@ var schema = new mongoose.Schema({
     google: {
         id: String
     },
-    cart: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Order'
-    },
+    cart: [{
+            product: {
+                type: mongoose.Schema.Types.ObjectId, 
+                ref:'Product'
+            },
+            quantity: {
+                type: Number
+            }
+        }],
     orderHistory: [
     {type: mongoose.Schema.Types.ObjectId,
      ref: 'Order'}
@@ -57,7 +63,6 @@ schema.pre('save', function (next) {
         this.salt = this.constructor.generateSalt();
         this.password = this.constructor.encryptPassword(this.password, this.salt);
     }
-
     next();
 
 });

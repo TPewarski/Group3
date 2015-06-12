@@ -3,18 +3,30 @@ module.exports = router;
 var userModel = require('mongoose').model('User');
 
 router.get('/', function(req, res){
-    userModel.find(req.query).exec().then(function(data){
+    userModel.find(req.query).populate('cart').exec().then(function(data){
         res.send(data)
     }, function(err){
-        console.log("error in find route", err)
         res.send(err)
     })
 })
 
 router.get('/:id', function(req, res){
-    userModel.findById(req.params.id).exec().then(function(data){
-        res.send(data)
+    userModel.findById(req.params.id).populate('cart').exec().then(function(data){
+        res.send(data);
     }, function(err){
-        res.send(err)
+        res.send(err);
     })
 })
+
+router.post('/', function(req, res){
+    var user = req.body;
+    userModel.create(user).then(function(createdProduct){
+        res.send(createdProduct);
+    }, function(err){
+        res.status(500).send(err.message);
+    });
+});
+
+router.put('/:id', function(req, res){
+    userModel.update({_id: req.params.id}, req.body);
+});

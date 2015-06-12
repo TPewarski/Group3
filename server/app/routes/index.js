@@ -9,6 +9,10 @@ router.use('/members', require('./members'));
 router.use('/admin', require('./admin'));
 router.use('/users', require('./users'));
 router.use('/orders', require('./orders'));
+<<<<<<< HEAD
+
+=======
+>>>>>>> 38686d94a6442e3db161a194ef1e26da35d5cb48
 
 
 // Make sure this is after all of
