@@ -1,12 +1,12 @@
 <div class='singleProductContainer'>
 	<!-- product name container is floating so singleproduct container is only -->
-	<div class="product-name-container">
-		<h1>{{ product.name }}</h1>
-		<div class='product-img-container'>
-			<img src="{{product.imgPath}}">
+	<div class="product-details-container" ng-controller="AdminController">
+		<div class="product-name-container">
+			<h1>{{ currentMed.name }}</h1>
+			<div class='product-img-container'>
+				<img src="{{currentMed.imgPath}}">
+			</div>
 		</div>
-	</div>
-	<div class="product-details-container" ng-controller="AdminController" ng-submit="submitEdit()">
 		<form name="editProductForm" id="editProductForm">
 
 			<div>
@@ -23,10 +23,11 @@
 			<div>
 				<label for="stock">Number In Stock</label>
 				<input name="stock" id="stock" ng-model="currentMed.inventoryQuantity"> 
-			</div>			
-
-			<input type="submit" value="Submit Changes">
-
+			</div>	
+			<button ng-click="deleteMed()">Delete</button>		
+<!-- 			<input type="submit" value="Submit Edit">
+ -->
+ 			<button ng-click="submitEdit()">Edit</button>
 		</form>
 	</div>
 </div>

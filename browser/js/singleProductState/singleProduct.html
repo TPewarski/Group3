@@ -1,17 +1,17 @@
 <div class='singleProductContainer'>
 	<!-- product name container is floating so singleproduct container is only -->
-	<div class="product-name-container">
-		<h1>{{ product.name }}</h1>
+	<div class="product-name-container" ng-controller="SingleProductController">
+		<h1>{{ anItem.name }}</h1>
 		<div class='product-img-container'>
-			<img src="{{ product.imgPath }}">
+			<img src="{{ anItem.imgPath }}">
 		</div>
 	</div>
 	<div class="product-details-container">
-		<p><strong>Description:</strong> <span>{{ product.description }} </p>
+		<p><strong>Description:</strong> <span>{{ anItem.description }} </p>
 		<br>
-		<p><strong>Price:</strong> <span>{{ product.price }} </p>
+		<p><strong>Price:</strong> <span>{{ anItem.price }} </p>
 		<br>
-		<p><strong>Number in Stock:</strong> <span>{{ product.inventoryQuantity }} </p>
+		<p><strong>Number in Stock:</strong> <span>{{ anItem.inventoryQuantity }} </p>
 		<button ng-click="addToCart()">Add to Cart</button>
 
 	</div>

@@ -2,7 +2,7 @@ app.config(function ($stateProvider) {
 
     $stateProvider.state('membersOnly', {
         url: '/members-area',
-        template: '<img ng-repeat="item in stash" width="300" ng-src="{{ item }}" />',
+        templateUrl: 'js/user/userprofile.html',
         controller: function ($scope, SecretStash) {
             SecretStash.getStash().then(function (stash) {
                 $scope.stash = stash;
