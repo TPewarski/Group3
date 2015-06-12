@@ -2,7 +2,7 @@ app.config(function($stateProvider){
 	$stateProvider.state('editpage', {
 		url: '/editpage/:theID',
 		controller: 'AdminController',
-		templateUrl: 'js/admin/editPage.html',
+		templateUrl: 'js/admin/adminEdit.html',
 		data: {authenticate: true}
 	});
 });
