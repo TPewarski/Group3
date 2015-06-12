@@ -7,14 +7,22 @@ app.config(function($stateProvider){
 });
 
 app.controller('CartController', function($scope, cartFactory, productsFactory){
-	console.log("hello WOrld")
-    $scope.items = cartFactory.items;
 
-    $scope.totalPrice = cartFactory.totalPrice($scope.items);
+    cartFactory.getAllCartItems().then(function(data){
+        $scope.items = data;
+        console.log(data)
+        $scope.totalPrice = cartFactory.totalPrice(data);
+        // $scope.quantityArray = cartFa
+    });
+
+    // getAllCartItems.then(function(data){
+    //     $scope.items = data
+    // })
+
+    // $scope.totalPrice = cartFactory.totalPrice($scope.items);
 
     $scope.potentialQuantities = function(num){
     	var arr = Array.apply(null, {length: num}).map(Number.call, Number)
-    	console.log("arr", arr)
     	return arr
     }
     

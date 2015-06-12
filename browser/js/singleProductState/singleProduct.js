@@ -19,11 +19,8 @@ app.controller('SingleProductController', function($scope, productsFactory, cart
 		console.log("an item", $scope.anItem);
 	});
 
-	$scope.addToCart = function(){
-		var cartItem = {};
-		cartItem.product = $scope.product;
-		cartItem.quantity = 1;
-		cartFactory.items.push(cartItem);
+	$scope.addToCart = function(anItem){
+		cartFactory.items.push(anItem);
 	};
 
 });
