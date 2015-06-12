@@ -5,7 +5,7 @@ var productModel = require('mongoose').model('Product');
 
 router.get('/', function(req, res){
     productModel.find(req.query).exec().then(function(data){
-        res.send(data)
+        res.send(data);
     }, function(err){
         res.send(err)
     })
@@ -13,7 +13,7 @@ router.get('/', function(req, res){
 
 router.get('/:id', function(req, res){
     productModel.findById(req.params.id).exec().then(function(data){
-        res.send(data)
+        res.send(data);
     }, function(err){
         res.send(err)
     })
