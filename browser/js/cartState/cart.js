@@ -7,10 +7,10 @@ app.config(function($stateProvider){
 });
 
 app.controller('CartController', function($scope, cartFactory, productsFactory){
+    console.log(cartFactory.items)
 
     cartFactory.getAllCartItems().then(function(data){
         $scope.items = data;
-        console.log(data)
         $scope.totalPrice = cartFactory.totalPrice(data);
         // $scope.quantityArray = cartFa
     });

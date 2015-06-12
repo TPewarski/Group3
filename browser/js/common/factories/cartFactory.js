@@ -12,6 +12,7 @@ app.factory('cartFactory', function($http, $q){
             return cost;
         },
         getAllCartItems: function(){
+            console.log(this.items)
             var self = this;
             return $q.all(this.items.map(function(itemIDandQuantity){
                 return $http.get('/api/products/'+itemIDandQuantity.id);

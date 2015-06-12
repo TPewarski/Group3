@@ -7,7 +7,8 @@ app.config(function($stateProvider){
 });
 
 app.controller('SingleProductController', function($scope, productsFactory, cartFactory, $stateParams, $state){
-	console.log("i has it", $scope.products);
+	
+	
 	productsFactory.getAllProducts().then(function(productsArray) {
 		$scope.products = productsArray.data;
 
@@ -16,11 +17,15 @@ app.controller('SingleProductController', function($scope, productsFactory, cart
 				$scope.anItem = aProd;
 			}
 		});	
-		console.log("an item", $scope.anItem);
+		
 	});
 
-	$scope.addToCart = function(anItem){
-		cartFactory.items.push(anItem);
+	$scope.addToCart = function(id){
+		
+		cartFactory.items.push({id:id,quant:1});
+
+		
+
 	};
 
 });
