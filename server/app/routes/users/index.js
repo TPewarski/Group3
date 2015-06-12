@@ -3,7 +3,7 @@ module.exports = router;
 var userModel = require('mongoose').model('User');
 
 router.get('/', function(req, res){
-    userModel.find(req.query).exec().then(function(data){
+    userModel.find(req.query).populate('cart').exec().then(function(data){
         res.send(data)
     }, function(err){
         res.send(err)
@@ -11,7 +11,7 @@ router.get('/', function(req, res){
 })
 
 router.get('/:id', function(req, res){
-    userModel.findById(req.params.id).exec().then(function(data){
+    userModel.findById(req.params.id).populate('cart').exec().then(function(data){
         res.send(data);
     }, function(err){
         res.send(err);
