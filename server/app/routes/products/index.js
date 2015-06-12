@@ -5,18 +5,19 @@ var productModel = require('mongoose').model('Product');
 
 router.get('/', function(req, res){
     productModel.find(req.query).exec().then(function(data){
+        console.log("data", data);
         res.send(data);
     }, function(err){
-        res.send(err)
-    })
+        res.send(err);
+    });
 });
 
 router.get('/:id', function(req, res){
     productModel.findById(req.params.id).exec().then(function(data){
         res.send(data);
     }, function(err){
-        res.send(err)
-    })
+        res.send(err);
+    });
 });
 
 router.post('/', function(req, res){

@@ -1,26 +1,61 @@
 app.factory('productsFactory', function($http){
 	return {
 
-		getAllProducts : function() {
-			// console.log("Hit get from factory")
-			return $http.get('/api/products').
-		  success(function(data, status, headers, config) {
-		    console.log("data", data);
-		  }).
-		  error(function(data, status, headers, config) {
-		  	console.log(data);
-		  });
+		// myQueriesResult: null,
+
+		getAllProducts : function(category) {
+			var queryParams = {};
+			console.log(category);
+
+			if(category) queryParams.category = category;
+
+			return $http.get('/api/products', {
+				params: queryParams
+			}).then(function(response) {
+				return response.data;
+			});
 		},
+
+
+		getByName: function(name) {
+			console.log("Hit getName");
+			var queryParams = {};
+			console.log(name);
+
+			if(name) queryParams.name = name;
+
+			return $http.get('/api/products', {
+				params: queryParams
+			}).then(function(response) {
+				return response.data;
+			});
+		},
+
+		getByCategories : function(categories) {
+			console.log("Hit get from factory");
+			var queryParams = {};
+			console.log(categories);
+
+			if(categories) queryParams.categories = categories;
+
+			return $http.get('/api/products', {
+				params: queryParams
+			}).then(function(response) {
+				return response.data;
+			});
+		},
+
 		getProductById : function(id){
 			return $http({
 				url: '/api/products/'+id,
 				method: 'GET',
 			}).then(function(data){
-				console.log("data", data)
+				console.log("data", data);
 			}, function(err){
-				console.log("err", err)
-			})
+				console.log("err", err);
+			});
 
-		}
-	}
+		},
+
+	};
 })

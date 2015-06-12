@@ -33,7 +33,8 @@ app.factory('AdminFactory', function($http) {
 app.controller('AdminController', function($scope, AdminFactory, $stateParams, productsFactory, $state) {
 
 	productsFactory.getAllProducts().then(function(productsArray){
-		$scope.products = productsArray.data;
+		// console.log("prodArr", productsArray);
+		$scope.products = productsArray;
 
 		$scope.products.forEach(function(aProd) {
 			if(aProd._id === $stateParams.theID) {

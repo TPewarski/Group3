@@ -9,27 +9,6 @@
             </li>
         </ul>
 
-          <div class="col-lg-6">
-            <div class="input-group">
-
-                   <div class="btn-group" dropdown>
-                      <button type="button" class="btn btn-danger">Search</button>
-                      <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
-                        <span class="caret"></span>
-                        <span class="sr-only">Split button!</span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#" ng-click="">Search By Name</a></li>
-                        <li><a href="#" ng-click="">Search By Description</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" ng-click="">All Products</a></li>
-                      </ul>
-                   </div>
-              
-                <input type="text" class="form-control" aria-label="..." ng-model="search">
-            </div><!-- /input-group -->
-          </div><!-- /.col-lg-6 -->
-
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
         <div ng-show="user" class="welcome">

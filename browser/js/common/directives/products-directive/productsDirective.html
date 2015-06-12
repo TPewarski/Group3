@@ -1,18 +1,22 @@
-<div class="product-directive" ng-click='goToProduct()'>
-	<div class="product-img">
-		<img src="{{ product.imgPath }}">
-	</div>
-	<div class="product-text">
-		<div class="product-name">
-			<p> Name: {{ product.name }}</p>
-		</div>
-
-		<div class="product-price">
-		   <p> Price: {{ product.price }} </p>
-		</div>
-		<div class="product-quantity">
-			<p> Quantity: {{ product.inventoryQuantity }}</p>
-		</div>
-		<button class="btn btn-default" id="admin-edit" ng-show="adminLoggedIn" ng-click="editProduct()">Admin</button>
-	</div>
+<div class="col-sm-4 col-lg-4 col-md-4 product-directive" ng-click="goToProduct()">
+    <div class="thumbnail">
+        <img src="{{product.imgPath}}" alt="">
+        <div class="caption">
+            <h4 class="pull-right">${{product.price}}</h4>
+            <h4><a href="#">{{product.name}}</a>
+            </h4>
+            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+        </div>
+        <div class="ratings">
+            <p class="pull-right">15 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+            </p>
+        </div>
+        <button class="btn btn-default" id="admin-edit" ng-show="adminLoggedIn" ng-click="editProduct()">Admin</button>
+    </div>
 </div>
