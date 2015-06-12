@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, productsFactory) {
 
     return {
         restrict: 'E',
@@ -15,8 +15,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             ];
 
             scope.user = null;
-
-            scope.search = null;
 
             scope.isLoggedIn = function () {
                 return AuthService.isAuthenticated();

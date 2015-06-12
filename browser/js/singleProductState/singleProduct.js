@@ -7,16 +7,15 @@ app.config(function($stateProvider){
 });
 
 app.controller('SingleProductController', function($scope, productsFactory, cartFactory, $stateParams, $state){
-	
+
 	productsFactory.getAllProducts().then(function(productsArray) {
-		$scope.products = productsArray.data;
+		$scope.products = productsArray;
 
 		$scope.products.forEach(function(aProd) {
 			if(aProd._id === $stateParams.theID) {
 				$scope.anItem = aProd;
 			}
 		});	
-		
 	});
 
 	$scope.addToCart = function(id){

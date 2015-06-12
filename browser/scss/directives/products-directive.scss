@@ -1,21 +1,31 @@
-.product-directive {
-	float: left;
-	border-style: solid;
-	border-width: 2px;
-	margin: 5px;
-	
+.caption {
+    height: 130px;
+    overflow: hidden;
 }
-.product-text {
-	padding: 5px;
+
+.caption h4 {
+    white-space: nowrap;
 }
-.product-img {
-	width: 200px;
-	height: 120px;
-	margin: 0 auto;
-	background-color: black;
-}
-.product-img > img {
-    margin: auto;
-    display: block;
+
+.thumbnail img {
     width: 100%;
- }
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
