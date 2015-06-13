@@ -16,35 +16,6 @@ app.factory('productsFactory', function($http){
 			});
 		},
 
-
-		getByName: function(name) {
-			console.log("Hit getName");
-			var queryParams = {};
-			console.log(name);
-
-			if(name) queryParams.name = name;
-
-			return $http.get('/api/products', {
-				params: queryParams
-			}).then(function(response) {
-				return response.data;
-			});
-		},
-
-		getByCategories : function(categories) {
-			console.log("Hit get from factory");
-			var queryParams = {};
-			console.log(categories);
-
-			if(categories) queryParams.categories = categories;
-
-			return $http.get('/api/products', {
-				params: queryParams
-			}).then(function(response) {
-				return response.data;
-			});
-		},
-
 		getProductById : function(id){
 			return $http({
 				url: '/api/products/'+id,
@@ -58,4 +29,4 @@ app.factory('productsFactory', function($http){
 		},
 
 	};
-})
+});

@@ -1,13 +1,9 @@
-app.config(function ($stateProvider) {
+app.config(function($stateProvider) {
 
     $stateProvider.state('membersOnly', {
-        url: '/members-area',
+        url: '/userprofile',
         templateUrl: 'js/user/userprofile.html',
-        controller: function ($scope, SecretStash) {
-            SecretStash.getStash().then(function (stash) {
-                $scope.stash = stash;
-            });
-        },
+        controller: 'UserController',
         // The following data.authenticate is read by an event listener
         // that controls access to this state. Refer to app.js.
         data: {
@@ -17,16 +13,17 @@ app.config(function ($stateProvider) {
 
 });
 
-app.factory('SecretStash', function ($http) {
+app.factory('UserFactory', function ($http) {
 
-    var getStash = function () {
-        return $http.get('/api/members/secret-stash').then(function (response) {
-            return response.data;
-        });
-    };
 
-    return {
-        getStash: getStash
-    };
+
+});
+
+
+app.controller('UserController', function($scope, $state, AuthService) {
+    AuthService.getLoggedInUser().then(function(user) {
+        $scope.theUser = user;
+        console.log($scope.theUser);
+    });
 
 });
