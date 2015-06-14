@@ -5,7 +5,6 @@ app.factory('productsFactory', function($http){
 
 		getAllProducts : function(category) {
 			var queryParams = {};
-			console.log(category);
 
 			if(category) queryParams.category = category;
 
@@ -21,9 +20,9 @@ app.factory('productsFactory', function($http){
 				url: '/api/products/'+id,
 				method: 'GET',
 			}).then(function(data){
-				console.log("data", data);
+				
 			}, function(err){
-				console.log("err", err);
+				
 			});
 
 		},

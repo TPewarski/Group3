@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('SignupCtrl', function ($scope, AuthService, $state, $window) {
+app.controller('SignupCtrl', function ($scope, AuthService, $state, GoogleLoginFactory) {
 
     $scope.login = {};
     $scope.error = null;
@@ -25,8 +25,5 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state, $window) {
 
     };
 
-    $scope.signUpGoogle = function(){
-       // AuthService.loginGoogle();
-       $window.location.href = "/auth/google";
-        }
+    $scope.signUpGoogle = GoogleLoginFactory.authenticate;
 });

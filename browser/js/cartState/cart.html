@@ -1,45 +1,7 @@
-
-<!-- we are probs going to want to make this a form -->
 <div class="cart-container">
-
-
-
-	<div class="cart-item" ng-repeat="item in items">
-		<div class="cart-product-img col-md-6 col-sm-12 col-lg-3">
-			<div class="product-img">
-				<img src="{{item.product.imgPath}}">
-			</div>
-			<!-- <img src="{{ item.product.imgPath }}"> -->
-		
-			<div class='cart-product-name'>
-				<p>{{ item.product.name }}</p>
-			</div>
-			<div class='cart-product-price'>
-				<p>{{ item.product.price }}</p>
-			</div>
-			<div>
-				<input type="text" value="{{item.quant}}">
-			</div>
-
-
-<!-- 			<div class="select-quantity">
-		
-				<select ng-model="item.quantity">
-					<option ng-repeat="num in potentialQuantities(item.product.inventoryQuantity +1)" value="{{ num }}">{{ num }}</option>
-
-				</select>
-			</div> -->
-
-		<!-- <select ng-options="item in inventoryQuantity()" ng-model="item.quantity" -->
-		</div>
-	</div>
-
-
-
-
-
-
+	<cartproduct ng-repeat="item in items" ng-controller="CartController"></cartproduct>
 </div>
+
 <div class="total-price">
 	<h2> Total Price: ${{ totalPrice }}</h2>
 </div>

@@ -6,30 +6,34 @@ app.config(function($stateProvider){
 	})
 });
 
-app.controller('CartController', function($scope, cartFactory, productsFactory){
+app.controller('CartController', function($scope, $state, cartFactory, productsFactory){
 
     cartFactory.getAllCartItems(cartFactory.get()).then(function(data){
         $scope.items = data;
         $scope.totalPrice = cartFactory.totalPrice(data);
-        // $scope.quantityArray = cartFa
+        
     });
 
-    // getAllCartItems.then(function(data){
-    //     $scope.items = data
-    // })
-
-    // $scope.totalPrice = cartFactory.totalPrice($scope.items);
-
-    $scope.potentialQuantities = function(num){
-    	var arr = Array.apply(null, {length: num}).map(Number.call, Number)
-    	return arr
+    $scope.deleteCartItem = function(id){
+        cartFactory.del(id);
+        $scope.$apply(); //WHY WONT THIS WORK
     }
+
+    $scope.updateQuantity = function(id, newQuant){
+        cartFactory.updateQuantity(id, newQuant);
+    }
+
     
+    $scope.goToProduct = function() {
+        console.log($scope.product);
+        $state.go('singleProduct', {theID: $scope.item._id});
+    };
+
     $scope.inventoryQuantity = function(productName){
-    	// return an array from 0-inventoryQuantity
+    	
     	return productsFactory.getInventoryQuantity(productName)
     }
-    // $scope.test = $scope.potentialQuantities(5)
+    
 
 
 });
