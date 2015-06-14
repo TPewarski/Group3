@@ -38,7 +38,7 @@ app.factory('cartFactory', function($http, $q, $rootScope){
             }
             $rootScope.$broadcast('CartChanged');
         },
-        updateQuantity: function(id, newQuant) {
+        updateOneQuantity: function(id, newQuant) {
             self = this;
             
             var itemIndex = self.itemIDindex.indexOf(id);

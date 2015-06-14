@@ -14,13 +14,17 @@ app.controller('CartController', function($scope, $state, cartFactory, productsF
         
     });
 
-    $scope.deleteCartItem = function(id){
-        cartFactory.del(id);
-        $scope.$apply(); //WHY WONT THIS WORK
+    $scope.stripeCheckout = function(){
+        console.log("CHECKED OUT BOYYYY")
     }
 
-    $scope.updateQuantity = function(id, newQuant){
-        cartFactory.updateQuantity(id, newQuant);
+    $scope.deleteCartItem = function(id){
+        cartFactory.del(id);
+        //$scope.$apply(); //WHY WONT THIS WORK
+    }
+
+    $scope.updateQuantity = function(){
+        //gotta figure this shit out. fuuuuuuuckkkkkk
     }
 
     
