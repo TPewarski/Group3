@@ -1,0 +1,20 @@
+<div class="col-sm-12 col-lg-2 col-md-4 product-directive">
+    <div class="thumbnail">
+        <img src="{{item.product.imgPath}}" alt="" ng-click="goToProduct()">
+        <div class="caption">
+            <h4><a href="#">{{item.product.name}}</a>
+            <h4 class="">${{item.product.price}}</h4>
+            </h4>
+            <p>{{item.product.description}}</p>
+        </div>
+        <div>
+            <form>
+                <label for="quantInputField">Quantity:</label>
+                <input name="quantity" id="quantInputField" type="text" value="{{item.quant}}" ng-model="item.quant">
+                <input type="submit" name="changeQuantity" value="Change" ng-click="updateQuantity(item.product._id, item.quant)">
+                <input type="submit" name="deleteCartItem" value="Delete" ng-click="deleteCartItem(item.product._id)">
+            </form>
+            
+        </div>
+    </div>
+</div>

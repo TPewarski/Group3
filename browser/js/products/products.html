@@ -1,30 +1,17 @@
-<!-- <input type="text" ng-model="ourSearch" />
-
 <!-- Page Content -->
     <div class="container">
 
         <div class="row">
 
-            <div class="col-md-3" ng-controller="ProductsController">
+            <div class="col-md-3">
                 <p class="lead">Pill Box</p>
 
-                <div class="input-group">
-
-	                   <div class="btn-group" dropdown>
-	                      <button type="button" class="btn btn-danger">Search</button>
-	                      <button type="button" class="btn btn-danger dropdown-toggle" dropdown-toggle>
-	                        <span class="caret"></span>
-	                        <span class="sr-only">Split button!</span>
-	                      </button>
-	                      <ul class="dropdown-menu" role="menu">
-	                        <li><a ng-click="searchByName()">Search By Name</a></li>
-	                        <li><a ng-click="searchByDescription()">Search By Description</a></li>
-	                        <li class="divider"></li>                   
-	                      </ul>
-	                   </div>
-	              
-	                <input type="text" class="form-control" aria-label="..." ng-model="searchBod">
-	            </div><!-- /input-group -->
+                <div class="input-group has-feedback" id="products-searchbar">
+	                <form>
+                        <i class="glyphicon glyphicon-search search-icon input-control-feedback"></i>
+	                   <input type="text" class="input-control" aria-label="..." ng-model="searchBod" placeholder="Search"/>
+                    </form>
+	            </div>
 
             </div>
 
@@ -61,9 +48,7 @@
 
                 </div>
 
- 				<product ng-repeat="product in products" ng-controller="ProductDirectiveController"></product>
-
-			<!--  | filter:ourSearch -->
+ 				<product ng-repeat="product in products | filter:searchBod " ng-controller="ProductDirectiveController"></product>
 
 			    <!-- /.container -->
 

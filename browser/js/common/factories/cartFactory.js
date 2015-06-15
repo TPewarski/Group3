@@ -7,11 +7,11 @@ function localSetCart (cart) {
     window.localStorage.setItem('cart',JSON.stringify(cart));
 }
 
-app.factory('cartFactory', function($http, $q){
+app.factory('cartFactory', function($http, $q, $rootScope){
 	return {
 			// maybe do it in this format?? {product: {}, quantity: num}
-		items: [{id: "111111111111111111111111", quant: 5},{id: "222222222222222222222222", quant:5}], 
-        itemIDindex : ['111111111111111111111111','222222222222222222222222'],
+		items: [], 
+        itemIDindex : [],
 
         totalPrice: function(arr){
             var cost = 0
@@ -25,23 +25,50 @@ app.factory('cartFactory', function($http, $q){
         add: function(newItemID) { 
 
             var self = this;
-            var doesItAlreadyExists = self.itemIDindex.indexOf(newItemID.id);
-            console.log(self.itemIDindex);
+            var itemIndex = self.itemIDindex.indexOf(newItemID.id);
             
-            if (doesItAlreadyExists === -1){
+            
+            if (itemIndex === -1){
                 self.items.push(newItemID);
                 self.itemIDindex.push(newItemID.id);
                 localSetCart(self.items);
             } else {
-                self.items[doesItAlreadyExists].quant += 1;
+                self.items[itemIndex].quant += 1;
                 localSetCart(self.items);
+            }
+            $rootScope.$broadcast('CartChanged');
+        },
+        updateOneQuantity: function(id, newQuant) {
+            self = this;
+            
+            var itemIndex = self.itemIDindex.indexOf(id);
+            if(itemIndex !== -1){
+                if(newQuant !== 0) { self.items[itemIndex].quant = newQuant; }
+                else { self.del(id); }
+            }
+            localSetCart(self.items);
+            $rootScope.$broadcast('CartChanged');
+        },
+        //Use this function to link local storage cart to items
+        update: function(){
+            console.log("updateingsdasda")
+            var self = this;
+            self.items = localGetCart();
+            if(true){
+                self.itemIDindex = self.items.map(function(item){
+                    return item.id;
+                })
             }
         },
         del: function(itemID){
-            var indexToDelete = itemIDindex.indexOf(itemID);
-            this.items.splice(indexToDelete,1);
-            this.itemIDindex.splice(indexToDelete,1);
-            localSetCart(this.items);
+            var self = this;
+            self.update();
+            console.log(self.items, self.itemIndex);
+            var indexToDelete = self.itemIDindex.indexOf(itemID);
+            self.items.splice(indexToDelete,1);
+            self.itemIDindex.splice(indexToDelete,1);
+            localSetCart(self.items);
+            $rootScope.$broadcast('CartChanged');
         },
         get: function(){
             this.items = localGetCart();
@@ -54,7 +81,6 @@ app.factory('cartFactory', function($http, $q){
                 localSetCart([]);
                 return new Array();
             }
-            
         },
         getAllCartItems: function(item){
             if(!item) return [];

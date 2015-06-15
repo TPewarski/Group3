@@ -83,7 +83,7 @@ gulp.task('seedDB', function () {
             _id: "111111111111111111111111",
             name: "NEXIUM (Esomeprazole) 40mg",
             description: "ESOMEPRAZOLE prevents the production of acid in the stomach. It is used to treat gastroesophageal reflux disease (GERD), ulcers, certain bacteria in the stomach, and inflammation of the esophagus. It can also be used to prevent ulcers in patients taking medicines called NSAIDs.",
-            price: 250000,
+            price: 2.50,
             inventoryQuantity: 3.50,
             categories: ['Heart Burn', 'GERD'],
             imgPath: "http://images.medscape.com/pi/features/drugdirectory/octupdate/ZNC50400.jpg"
@@ -106,6 +106,23 @@ gulp.task('seedDB', function () {
             categories: ['Anti-inflammatory', 'NSAID'],
             imgPath: "http://images.ddccdn.com/images/pills/nlm/000251525.jpg"
         },
+        {
+            name: "Melange",
+            description: "The spice must flow.",
+            price: 100000,
+            inventoryQuantity: 999999,
+            categories: ['Psychotic', 'Blue Eyes'],
+            imgPath: "http://steve-lovelace.com/wordpress/wp-content/uploads/2012/04/atreides-brand-spice-melange.jpg"
+        },
+        {
+            name: "NZT-48",
+            description: "You know how people only use 10% of their brains? Well, this drug allows you to use 100% of your brain.",
+            price: 40.35,
+            inventoryQuantity: 10000,
+            categories: ['Psychotic'],
+            imgPath: "http://i.ytimg.com/vi/QS5WG5MsX-E/hqdefault.jpg"
+        },
+
 
 
     ]

@@ -2,20 +2,10 @@
     <div class="thumbnail">
         <img src="{{product.imgPath}}" alt="">
         <div class="caption">
-            <h4 class="pull-right">${{product.price}}</h4>
             <h4><a href="#">{{product.name}}</a>
+            <h4 class="">${{product.price}}</h4>
             </h4>
-            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
-        </div>
-        <div class="ratings">
-            <p class="pull-right">15 reviews</p>
-            <p>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-            </p>
+            <p>{{product.description}}</p>
         </div>
         <button class="btn btn-default" id="admin-edit" ng-show="adminLoggedIn" ng-click="editProduct()">Admin</button>
     </div>

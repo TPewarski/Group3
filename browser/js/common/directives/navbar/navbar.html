@@ -9,6 +9,12 @@
             </li>
         </ul>
 
+        <button ui-sref="cart" class="btn login-button cart-button" style="padding:0px;">
+            <img id="cart-button-img" 
+                src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/shopping-cart1-512.png"
+                style="width:6%;padding:0">
+            {{cartCount}}
+        </button>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
         <button class="btn login-button" ui-sref="cart">Cart</button>

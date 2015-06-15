@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state) {
+app.controller('LoginCtrl', function ($scope, AuthService, $state, GoogleLoginFactory) {
 
     $scope.login = {};
     $scope.error = null;
@@ -24,4 +24,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
         });
 
     };
+
+    $scope.signUpGoogle = GoogleLoginFactory.authenticate;
 });
