@@ -9,18 +9,22 @@
             </li>
         </ul>
 
-        <button ui-sref="cart" class="btn login-button cart-button" style="padding:0px;">
-            <img id="cart-button-img" 
-                src="https://cdn1.iconfinder.com/data/icons/social-messaging-productivity-4/128/shopping-cart1-512.png"
-                style="width:6%;padding:0">
-            {{cartCount}}
-        </button>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
-        <button class="btn login-button" ui-sref="cart">Cart</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
-        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a class="btn login-button"><span class="glyphicon glyphicon-shopping-cart"> {{cartCount}}</span></a>
+            </li>
+            <li>
+                <a ng-show="!user" ui-sref="login" class="btn login-button">Login</a>
+            </li>
+            <li>
+                <a ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</a>
+            </li>
+            <li ng-show="user" class="welcome">
+                <!-- <span>Welcome, {{user.email}}</span> -->
+                <a ng-click="logout()">Logout</a>
+            </li>
+        </ul>
+
     </div>
 </nav>
