@@ -30,10 +30,12 @@ app.factory('productsFactory', function($http){
 		getReviews: function(productId){
 			var queryParams ={};
 			queryParams.product = productId;
+			console.log("made get req for reviews")
 
 			return $http.get('/api/reviews',{
 				params: queryParams
 			}).then(function(response){
+				console.log("resp from getReviews", response)
 				return response.data
 			}, function(err){
 				console.log("err", err)
@@ -42,6 +44,10 @@ app.factory('productsFactory', function($http){
 		submitNewReview: function(review){
 			return $http.post('/api/reviews', review)
 				.then(function(response){
+					console.log("response", response)
+					return response.data
+				}).catch(function(err){
+
 				})
 		}
 

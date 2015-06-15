@@ -4,9 +4,12 @@ module.exports = router;
 var reviewModel = require('mongoose').model('Review');
 
 router.get('/', function(req, res){
-	reviewModel.find(req.query).exec().then(function(data){
+    console.log("req.query", req.query)
+    reviewModel.find(req.query).exec().then(function(data){
+        console.log("review data", data)
 		res.send(data);
 	}, function(err){
+        console.log("hit err", err)
 		res.send(err)
 	})
 })
