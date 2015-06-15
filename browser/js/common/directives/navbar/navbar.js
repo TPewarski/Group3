@@ -1,10 +1,21 @@
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, productsFactory) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, productsFactory, cartFactory, $window) {
 
     return {
         restrict: 'E',
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
+            console.log(cartFactory.items.length);
+
+            cartFactory.update();
+
+            scope.cartCount = cartFactory.items.length;
+
+            
+
+            $rootScope.$on("CartChanged", function(event){
+                scope.cartCount = cartFactory.items.length;
+            })
 
             scope.items = [
                 { label: 'Home', state: 'home' },
