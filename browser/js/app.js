@@ -1,4 +1,5 @@
 'use strict';
+
 window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt', 'stripe.checkout']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {

@@ -27,5 +27,18 @@ app.factory('productsFactory', function($http){
 
 		},
 
+		getReviews: function(productId){
+			var queryParams ={};
+			queryParams.product = productId;
+
+			return $http.get('/api/reviews',{
+				params: queryParams
+			}).then(function(response){
+				return response.data
+			}, function(err){
+				console.log("err", err)
+			})
+		}
+
 	};
 });

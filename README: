@@ -50,3 +50,10 @@ email mode??
 product in products model might be confusing
 typo in inventory quantity "defaut"
 cart should be a subdocument of the order document. instead of an embedded reference to an id. embed the data itself in whats called a subdocument. that makes since as
+
+
+
+
+the frontend only knows by the status code if the data was good or bad
+
+app.factory what angular does is var 
