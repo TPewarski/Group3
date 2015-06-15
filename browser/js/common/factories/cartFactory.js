@@ -12,6 +12,7 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
         var itemsIdIndex = [];
 
         var totalPrice = function(arr){ 
+            console.log(AuthService.isAuthenticated())
             var cost = 0
             var self = this;
             arr.forEach(function(item, index){
@@ -61,15 +62,13 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
 
         //Use this function to link local storage cart to items
         var update = function(){
-            console.log(AuthService.isAuthenticated())
-            
             //Synchronize things in this factory with local storage
             items = localGetCart();
             if(items){
                 popItemIDIndex();
             } else { items = [] };
             //If user is logged
-            if(AuthService.isAuthenticated){
+            if(AuthService.isAuthenticated()){
                 AuthService.getLoggedInUser().then(function(user){
                     if(items.length > 0){
                         user.cart = items.map(function(item){
