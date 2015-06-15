@@ -3,7 +3,11 @@
 var mongoose = require('mongoose')
 
 var reviewSchema = new mongoose.Schema({
-	//user?
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	date: {type: String, required: true},
 	product: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Product'
