@@ -8,6 +8,7 @@ app.config(function($stateProvider){
 
 app.controller('SingleProductController', function($scope, productsFactory, cartFactory, $stateParams, $state){
 	$scope.reviews = null;
+	$scope.showReviewForm = false;
 
 	productsFactory.getAllProducts().then(function(productsArray) {
 		$scope.products = productsArray;
@@ -29,11 +30,17 @@ app.controller('SingleProductController', function($scope, productsFactory, cart
 		cartFactory.add({id:id,quant:1});
 	};
 	$scope.toggleReviewForm = function(){
+		console.log("showReviewForm", $scope.showReviewForm)
 		if($scope.showReviewForm === false) $scope.showReviewForm = true;
-		$scope.showReviewForm = false;
+		else $scope.showReviewForm = false;
 	}
 	
-	$scope.showReviewForm = false;
+
+	$scope.getNumber = function(num){
+		return new Array(num)
+	}
+
+	
 
 
 });

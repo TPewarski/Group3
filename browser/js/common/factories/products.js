@@ -38,6 +38,11 @@ app.factory('productsFactory', function($http){
 			}, function(err){
 				console.log("err", err)
 			})
+		},
+		submitNewReview: function(review){
+			return $http.post('/api/reviews', review)
+				.then(function(response){
+				})
 		}
 
 	};

@@ -23,14 +23,6 @@
 	                            	<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
 	                            </button>
 	                        </p>
-	                        <p>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star"></span>
-	                            <span class="glyphicon glyphicon-star-empty"></span>
-	                            4.0 stars
-	                        </p>
 	                    </div>
 	                </div>
                 </div>
@@ -39,7 +31,7 @@
                 <div class="well">
 
                     <div class="text-right">
-                        <a class="btn btn-success" ng-click="toggleReviewForm()">Leave a Review</a>
+                        <a class="btn btn-success" ng-click="toggleReviewForm()" ng-if="!showReviewForm">Leave a Review</a>
                     </div>
 
                     <hr>
@@ -52,15 +44,17 @@
                             <p>{{ review.comment }}</p>
                         </div>
                     </div>
-                    <form accept-charset="UTF-8" action="" method="post">
-                        <input id="ratings-hidden" name="rating" type="hidden"> 
+                    <form accept-charset="UTF-8" method="post" ng-if="showReviewForm" ng-submit="">
                         <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5"></textarea>
         
                         <div class="text-right">
-                            <div class="stars starrr" data-rating="0"></div>
-                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                        	<div class="rating">
+                        		<rating ng-model="rate" id="rating-directive"></rating>
+                        	</div>
+                    		<!-- <span class="glyphicon glyphicon-star-empty"></span> -->
+                            <a class="btn btn-danger btn-sm" ng-click="toggleReviewForm()" id="close-review-box" style="margin-right: 10px;">
                             <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                            <button class="btn btn-success btn-lg" type="submit">Save</button>
+                            <button class="btn btn-success btn-lg" type="submit" value="Submit">Save</button>
                         </div>
                     </form>
 
