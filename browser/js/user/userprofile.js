@@ -15,15 +15,29 @@ app.config(function($stateProvider) {
 
 app.factory('UserFactory', function ($http) {
 
-
+    return {
+        // getSettings: function( )
+    };
 
 });
 
 
-app.controller('UserController', function($scope, $state, AuthService) {
+app.controller('UserController', function($scope, $state, AuthService, UserFactory) {
     AuthService.getLoggedInUser().then(function(user) {
         $scope.theUser = user;
         console.log($scope.theUser);
     });
+
+    $scope.displaySettings = function(){
+        UserFactory.getSettings();
+    };
+
+    $scope.displayCart = function(){
+        UserFactory.getSettings();
+    };
+
+    $scope.displayOrdHistory = function(){
+        UserFactory.getSettings();
+    };
 
 });
