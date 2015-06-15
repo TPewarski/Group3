@@ -15,4 +15,20 @@
 		<button ng-click="addToCart(anItem._id)">Add to Cart</button>
 
 	</div>
+	<div class="reviews">
+		<h3 ng-if="reviews.length === 0"> This product has not yet been reviewed</h3>
+		<div class="review" ng-repeat="review in reviews">
+			<div class="reviewHeader">
+				<p class="date">{{ review.date }}</p>
+				<!-- float the rating right -->
+				<p class="rating">{{ review.rating }}/5</p>
+			<p class="comment">{{ review.comment }}</p>
+		</div>
+	</div>
+	<!-- ng if this button based on whether user is logged in or not and that showReviewForm is false -->
+	<button ng-click="toggleReviewForm()">Submit a review</button>
+	<button ng-click="toggleReviewForm()" ng-if="!showReviewForm">Hide the review form</button>
+	<div class="reviewForm" ng-if="showReviewForm">
+		
+	</div>
 </div>
