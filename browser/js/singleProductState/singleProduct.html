@@ -27,7 +27,7 @@
 	</div>
 	<!-- ng if this button based on whether user is logged in or not and that showReviewForm is false -->
 	<button ng-click="toggleReviewForm()">Submit a review</button>
-	<button ng-click="toggleReviewForm()" ng-if="!showReviewForm">Hide the review form</button>
+	<button ng-click="toggleReviewForm()" ng-if="showReviewForm">Hide the review form</button>
 	<div class="reviewForm" ng-if="showReviewForm">
 		
 	</div>
