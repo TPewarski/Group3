@@ -26,17 +26,17 @@
 
                 <div ng-repeat="item in items" > 
                     <div class="row">
-                        <div class="col-xs-2"><img class="img-responsive" src="{{item.product.imgPath}}">
+                        <div class="col-xs-2"><img class="img-responsive" src="{{item.product.imgPath}}" ng-click="goToProduct(item.product._id)">
                         </div>
-                        <div class="col-xs-4">
-                            <h4 class="product-name"><strong>{{item.product.name}}</strong></h4><h4><small>{{item.product.description}}</small></h4>
+                        <div class="col-xs-4" >
+                            <h4 class="product-name"><strong ng-click="goToProduct(item.product._id)">{{item.product.name}}</strong></h4><h4><small>{{item.product.description}}</small></h4>
                         </div>
                         <div class="col-xs-6">
                             <div class="col-xs-6 text-right">
-                                <h6><strong>{{item.product.price}} <span class="text-muted">x</span></strong></h6>
+                                <h6><strong>{{item.product.price | currency}} <span class="text-muted">x</span></strong></h6>
                             </div>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control input-sm" value="1">
+                                <input type="text" class="form-control input-sm" ng-model="item.quantity" ng-change="updateQuantity(item.product._id, item.quantity)">
                             </div>
                             <div class="col-xs-2">
                                 <button type="button" class="btn btn-link btn-xs" ng-click="deleteCartItem(item.product._id)" ui-sref="cart" ui-sref-opts="{reload:true}">
@@ -62,7 +62,7 @@
                                 <h6 class="text-right">Added items?</h6>
                             </div>
                             <div class="col-xs-3">
-                                <button type="button" class="btn btn-default btn-sm btn-block" ui-sref="cart" ui-sref-opts="{reload:true}" ng-click="updateQuantity">
+                                <button type="button" class="btn btn-default btn-sm btn-block" ui-sref="cart" ui-sref-opts="{reload:true}" ng-click="">
                                     Update cart
                                 </button>
                             </div>
@@ -72,18 +72,18 @@
                 <div class="panel-footer">
                     <div class="row text-center">
                         <div class="col-xs-9">
-                            <h4 class="text-right">Total <strong>${{ totalPrice }}</strong></h4>
+                            <h4 class="text-right">Total <strong>{{ totalPrice | currency }}</strong></h4>
                         </div>
                         <div class="col-xs-3">
 
                             <div class="btn btn-success btn-block " style="visibility: visible;"
 
-                            stripe-checkout="CartController.stripeCheckout"
-																data-key="pk_test_0gYJBXnkM3RHlKJPsaBWvoOW"
-														    data-image="http://img2.wikia.nocookie.net/__cb20141007133507/logopedia/images/b/bf/KFC_logo.svg"
+                            stripe-checkout="stripeCheckout"
+															data-key="pk_test_0gYJBXnkM3RHlKJPsaBWvoOW"
+														    data-image="http://i.imgur.com/vXELVZI.jpg"
 														    data-name="PharmaTek"
 														    data-description="Pills here."
-														    data-amount="9999">
+														    data-amount= '{{totalPrice * 100}}' >
                                 Checkout
                             </div>
 
@@ -97,39 +97,3 @@
     </div>
 </div>
 
-
-
-
-
-<!-- <div class="cart-container">
-	<cartproduct ng-repeat="item in items" ng-controller="CartController"></cartproduct>
-</div>
-
-<div class="cart-checkout">
-
-</div>
-
-<div class="total-price">
-	<h2> Total Price: ${{ totalPrice }}</h2>
-</div> -->
-
-<!-- <div class="col-sm-12 col-lg-2 col-md-4 product-directive">
-    <div class="thumbnail">
-        <img src="{{item.product.imgPath}}" alt="" ng-click="goToProduct()">
-        <div class="caption">
-            <h4><a href="#">{{item.product.name}}</a>
-            <h4 class="">${{item.product.price}}</h4>
-            </h4>
-            <p>{{item.product.description}}</p>
-        </div>
-        <div>
-            <form>
-                <label for="quantInputField">Quantity:</label>
-                <input name="quantity" id="quantInputField" type="text" value="{{item.quant}}" ng-model="item.quant">
-                <input type="submit" name="changeQuantity" value="Change" ng-click="updateQuantity(item.product._id, item.quant)">
-                <input type="submit" name="deleteCartItem" value="Delete" ng-click="deleteCartItem(item.product._id)">
-            </form>
-            
-        </div>
-    </div>
-</div> -->

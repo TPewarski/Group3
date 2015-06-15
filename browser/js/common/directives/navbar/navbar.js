@@ -5,16 +5,15 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
-            console.log(cartFactory.items.length);
 
             cartFactory.update();
 
-            scope.cartCount = cartFactory.items.length;
+            scope.cartCount = cartFactory.cartCount();
 
             
 
             $rootScope.$on("CartChanged", function(event){
-                scope.cartCount = cartFactory.items.length;
+                scope.cartCount = cartFactory.cartCount();
             })
 
             scope.items = [

@@ -13,13 +13,7 @@ app.config(function($stateProvider) {
 
 });
 
-app.factory('UserFactory', function ($http) {
 
-    return {
-        // getSettings: function( )
-    };
-
-});
 
 
 app.controller('UserController', function($scope, $state, AuthService, UserFactory) {

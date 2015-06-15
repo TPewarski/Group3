@@ -21,7 +21,7 @@ app.controller('SingleProductController', function($scope, productsFactory, cart
 	$scope.addToCart = function(id){
 
 		// $cookies.put("key", "val");
-		cartFactory.add({id:id,quant:1});
+		cartFactory.add({id:id,quantity:1});
 	};
 
 });
