@@ -14,7 +14,7 @@ app.controller('CartController', function($scope, $state, cartFactory, productsF
         
     });
 
-    $scope.stripeCheckout = function(){
+    this.stripeCheckout = function(){
         console.log("CHECKED OUT BOYYYY")
     }
 
