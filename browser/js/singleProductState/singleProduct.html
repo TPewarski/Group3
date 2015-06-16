@@ -40,7 +40,7 @@
                         <div class="col-md-12">
                             <span class="glyphicon glyphicon-star" ng-repeat="i in getNumber(review.rating) track by $index"></span>
                             <span class="glyphicon glyphicon-star-empty" ng-repeat="i in getNumber(5-review.rating) track by $index"></span>
-                            <span class="pull-right">{{ review.date }}</span>
+                            <span class="pull-right">{{ review.date.slice(0, 10) }}</span>
                             <p>{{ review.comment }}</p>
                         </div>
                     </div>
