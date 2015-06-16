@@ -27,12 +27,13 @@ router.post('/', function(req, res){
     });
 });
 
-
 router.put('/', function(req, res){
     userModel.findById(req.body._id, function(err, user) {
-        if(err) return err;
-        user.email = req.body.email
-        user.password = req.body.password;
+        if(err) return res.status(500).send(err.message);
+
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password;
+        user.cart = req.body.cart || user.cart;
         user.save(function(err, user){
             if(err) return err;
             res.send(user);

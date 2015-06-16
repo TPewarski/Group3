@@ -10,10 +10,9 @@ function localSetCart (cart) {
 app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session){
 		var items = [];
         var itemsIdIndex = [];
-
+        var itemsArrayForOrders = []; //Refactor this later. Look below in getcartitems for what this is 
 
         var totalPrice = function(arr){ 
-            console.log(AuthService.isAuthenticated())
             var cost = 0
             var self = this;
             arr.forEach(function(item, index){
@@ -64,15 +63,25 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
 
         //Use this function to link local storage cart to items
         var update = function(){
+            console.log("Cart Items:", items);
+            console.log("itemsArrayForOrders:", itemsArrayForOrders);
             //Synchronize things in this factory with local storage
-            items = localGetCart();
-            if(items){
+            if(items.length){ //If at least one thing exists.
                 popItemIDIndex();
-            } else { items = [] };
+                localSetCart(items);
+            } else { 
+                items = localGetCart() || new Array();
+            };
+            angular.element(document).ready(function () {
+                getAllCartItems();
+            });
+
+            $rootScope.$broadcast('CartChanged');
+
         }
 
+
         var syncDB = function() {
-            console.log("SYNCING DATABASE")
             if(AuthService.isAuthenticated()){
                 AuthService.getLoggedInUser().then(function(user){
                     if(items.length > 0){
@@ -91,15 +100,11 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
                                 item.id = item.product;
                                 return item;
                             })
+                            popItemIDIndex();
                         }
                     }
-                    //Sync Backend here
-                    var newItem = items.map(function(item){
-                        delete item["id"];
-                        return item;
-                    })
-                    console.log(newItem);
-                    $http.put('/api/users/'+ user._id, {cart: newItem}).then(function(){
+
+                    $http.put('/api/users', {_id: user._id, cart: items}).then(function(){
                         update();
                     });
                 })
@@ -120,7 +125,7 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
             localSetCart(items);
             $rootScope.$broadcast('CartChanged');
         }
-        var get = function(){
+        function get(){
             items = localGetCart();
             if(items){
                 itemsIdIndex = items.map(function(item){
@@ -132,13 +137,22 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
                 return new Array();
             }
         }
-        var getAllCartItems = function(){
+        function getAllCartItems(){
             if(!items) items = [];
 
             return $q.all(items.map(function(itemIDandQuantity){
                 return $http.get('/api/products/'+itemIDandQuantity.id);
             }))
             .then(function(results){
+
+                itemsArrayForOrders = results.map(function(resp){
+                    return resp.data;
+                });
+                ///////
+                //Assign item array for orders here to be added
+                //Make it match the backend exactly?? Figure this out  
+                //later.
+                ///////
                 return results.map(function(result, index){
                     var newObject = {};
                     newObject.product = result.data;
@@ -148,10 +162,41 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
             });
         }
 
-        var clearCart = function(){
+        function clearCart(){
             items = [];
             itemsIdIndex = [];
+            update();
+            syncDB();
         }
+
+        //This function below is a risky gamble.
+        //It's a huge techn debt with a big ass interest rate
+        //but I don't think we'll need to pay it back before the
+        //project is finished.
+        function checkout (userId){
+
+            var cartToSend = itemsArrayForOrders.map(function(product, index){
+                var newItem = {};
+                newItem.name = product.name;
+                newItem.price = product.price;
+                newItem.quantity = items[index].quantity;
+                return newItem;
+            })
+
+            var newOrder = {
+                user: userId,
+                cart: cartToSend
+            }
+
+            return $http.post('/api/orders', newOrder)
+            .success(function(data){
+                console.log("ORDER SUCCESS!!!", data)
+                clearCart();
+
+            })
+        }
+
+        update();
    
     return {
           totalPrice: totalPrice,
@@ -160,9 +205,10 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
           del: del,
           update: update,
           updateOneQuantity: updateOneQuantity,
-          getAllCartItems: getAllCartItems, //This returns an array of product ID's and all the juciy information inside
+          getAllCartItems: getAllCartItems, //This returns an array of product ID's and all the juciy information
           cartCount: cartCount,
           syncDB: syncDB,
-          clearCart: clearCart;
+          clearCart: clearCart,
+          checkout: checkout
 	}
 });
