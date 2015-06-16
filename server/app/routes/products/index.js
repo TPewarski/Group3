@@ -5,7 +5,7 @@ var productModel = require('mongoose').model('Product');
 
 router.get('/', function(req, res){
     productModel.find(req.query).exec().then(function(data){
-        console.log("data", data);
+        // console.log("data", data);
         res.send(data);
     }, function(err){
         res.send(err);
