@@ -163,6 +163,6 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
           getAllCartItems: getAllCartItems, //This returns an array of product ID's and all the juciy information inside
           cartCount: cartCount,
           syncDB: syncDB,
-          clearCart: clearCart;
+          clearCart: clearCart
 	}
 });

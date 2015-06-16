@@ -17,11 +17,14 @@ app.config(function($stateProvider) {
 
 
 
-app.controller('UserController', function($scope, $state, AuthService, UserFactory) {
+app.controller('UserController', function($scope, $state, AuthService, UserFactory ) {
     $scope.showHistory = false;
     $scope.showSettings = false;
+    $scope.isAnAdmin = false;
+    $scope.showUsers = false;
     AuthService.getLoggedInUser().then(function(user) {
         $scope.theUser = user;
+        $scope.isAnAdmin = user.isAdmin;
         console.log($scope.theUser);
     });
 
@@ -49,6 +52,17 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
         console.log($scope.theUser);
         UserFactory.sendEdit($scope.theUser);
 
+    };
+
+    $scope.displayUsers = function(){
+        console.log("clicked");
+        if($scope.isAnAdmin){
+            UserFactory.getAllUsers().then(function(allUsers){
+                $scope.allUsers = allUsers;
+                if($scope.showUsers) $scope.showUsers = false;
+                else $scope.showUsers = true;
+            });
+        }
     };
 
 });

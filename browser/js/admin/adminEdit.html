@@ -24,9 +24,7 @@
 				<label for="stock">Number In Stock</label>
 				<input name="stock" id="stock" ng-model="currentMed.inventoryQuantity"> 
 			</div>	
-			<button ng-click="deleteMed()">Delete</button>		
-<!-- 			<input type="submit" value="Submit Edit">
- -->
+			<button ng-click="deleteMed(currentMed._id)">Delete</button>		
  			<button ng-click="submitEdit()">Edit</button>
 		</form>
 	</div>
