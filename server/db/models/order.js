@@ -1,6 +1,12 @@
 'use strict';
 
+var path = require('path');
 var mongoose = require('mongoose');
+
+
+
+var User = require('mongoose').model('User');
+
 
 var orderSchema = new mongoose.Schema({
     user: {
@@ -28,27 +34,15 @@ var orderSchema = new mongoose.Schema({
     dateShipped: { type:Date }
 });
 
-// orderSchema.post('save', function(doc){
-//     console.log('%s has been saved', 
-//         Product.find
+orderSchema.post('save', function(doc){
+var email = require(path.join(__dirname, '../../app/configure/email-service/index.js'));
+        var userID = doc.user;
+        User.findOne({_id:userID}, function(err, man){
+            email(man.email, 'order-confirm');
+        })
 
 
-//         );
-// })
+});
 
 var Order = mongoose.model('Order', orderSchema);
-
-
-// orderSchema.virtual('products.total').get(function(){
-//     Order.find().populate().exec(function(err,????){
-//     })
-//     return this.products.reduce(function(prev, curr){
-//         return this.price
-//     }, 0);
-// })
-
-
-
-
-
 
