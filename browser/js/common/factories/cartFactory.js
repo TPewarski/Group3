@@ -7,13 +7,14 @@ function localSetCart (cart) {
     window.localStorage.setItem('cart',JSON.stringify(cart));
 }
 
-app.factory('cartFactory', function($http, $q, $rootScope){
+app.factory('cartFactory', function($http, $q, $rootScope, AuthService){
 	return {
 			// maybe do it in this format?? {product: {}, quantity: num}
 		items: [], 
         itemIDindex : [],
 
         totalPrice: function(arr){
+            console.log("!!!!!!!!!", AuthService.isAuthenticated())
             var cost = 0
             var self = this;
             arr.forEach(function(item, index){
