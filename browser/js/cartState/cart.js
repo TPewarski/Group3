@@ -16,7 +16,7 @@ app.controller('CartController', function($scope, $state, cartFactory, productsF
     });
 
     $scope.stripeCheckout = function(){
-        console.log(arguments);
+        cartFactory.clearCart();
         //THIS WORKS! now just gotta get it to clear cart and transfer all the information to orders. 
     }
 

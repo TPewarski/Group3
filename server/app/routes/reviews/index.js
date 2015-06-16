@@ -10,7 +10,7 @@ router.get('/', function(req, res){
 		res.send(data);
 	}, function(err){
         console.log("hit err", err)
-		res.send(err)
+		res.status(500).send(err.message);
 	})
 })
 
@@ -18,7 +18,7 @@ router.get('/:id', function(req, res){
 	reviewModel.findById(req.params.id).exec().then(function(data){
         res.send(data);
     }, function(err){
-        res.send(err);
+        res.status(500).send(err.message);;
     });
 })
 

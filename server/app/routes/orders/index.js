@@ -7,7 +7,7 @@ router.get('/', function(req, res){
     orderModel.find(req.query).populate('user').exec().then(function(data){
         res.send(data)
     }, function(err){
-        res.send(err)
+        res.status(500).send(err.message);
     })
 });
 
@@ -15,7 +15,7 @@ router.get('/:id', function(req, res){
     orderModel.findById(req.params.id).populate('user').exec().then(function(data){
         res.send(data)
     }, function(err){
-        res.send(err)
+        res.status(500).send(err.message);
     })
 });
 

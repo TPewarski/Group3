@@ -147,6 +147,11 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
                 })
             });
         }
+
+        var clearCart = function(){
+            items = [];
+            itemsIdIndex = [];
+        }
    
     return {
           totalPrice: totalPrice,
@@ -155,7 +160,9 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
           del: del,
           update: update,
           updateOneQuantity: updateOneQuantity,
-          getAllCartItems: getAllCartItems,
-          cartCount: cartCount
+          getAllCartItems: getAllCartItems, //This returns an array of product ID's and all the juciy information inside
+          cartCount: cartCount,
+          syncDB: syncDB,
+          clearCart: clearCart;
 	}
 });
