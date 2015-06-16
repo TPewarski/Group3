@@ -165,8 +165,10 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
         function clearCart(){
             items = [];
             itemsIdIndex = [];
+            localSetCart([])
             update();
             syncDB();
+
         }
 
         //This function below is a risky gamble.
@@ -192,6 +194,8 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
             .success(function(data){
                 console.log("ORDER SUCCESS!!!", data);
                 clearCart();
+                $state.go('products')
+
 
             });
         }
