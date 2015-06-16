@@ -8,6 +8,8 @@ app.config(function($stateProvider){
 
 app.controller('CartController', function($scope, $state, cartFactory, productsFactory){
 
+    cartFactory.update();
+
     cartFactory.getAllCartItems().then(function(data){
         $scope.items = data;
         
@@ -15,9 +17,9 @@ app.controller('CartController', function($scope, $state, cartFactory, productsF
         
     });
 
+
     $scope.stripeCheckout = function(){
-        cartFactory.clearCart();
-        //THIS WORKS! now just gotta get it to clear cart and transfer all the information to orders. 
+        cartFactory.checkout();
     }
 
     $scope.deleteCartItem = function(id){

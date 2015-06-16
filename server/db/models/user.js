@@ -28,7 +28,7 @@ var schema = new mongoose.Schema({
     cart: [{
             product: {
                 type: mongoose.Schema.Types.ObjectId, 
-                ref:'Product'
+                ref:'Product',
             },
             quantity: {
                 type: Number
