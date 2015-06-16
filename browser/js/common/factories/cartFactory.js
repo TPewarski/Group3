@@ -190,10 +190,10 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
 
             return $http.post('/api/orders', newOrder)
             .success(function(data){
-                console.log("ORDER SUCCESS!!!", data)
+                console.log("ORDER SUCCESS!!!", data);
                 clearCart();
 
-            })
+            });
         }
 
         update();
@@ -210,5 +210,5 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
           syncDB: syncDB,
           clearCart: clearCart,
           checkout: checkout
-	}
+	};
 });

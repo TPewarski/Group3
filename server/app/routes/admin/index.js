@@ -13,13 +13,12 @@ router.post('/editpage', function (req, res, next) {
 	});
 });
 
-router.delete('/deletepage', function(req, res, next) {
-	console.log(req.body);
-	productModel.findByIdAndRemove(req.body._id).exec().then(function() {
-		res.end();
-	}, function(err) {
-		res.status(500).send(err.message);
-	});
-});
+router.delete('/deletepage/:id', function(req, res, next) {
+	console.log(req.params);
+	productModel.remove({_id: req.params.id}, function(err){
+		if(err) res.status(500).send(err.message);
+		res.send("Success!");
+	});   
+}); 
 
 

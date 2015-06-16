@@ -19,6 +19,13 @@ app.factory('UserFactory', function ($http) {
             error(function(data, status, headers, config) {
                 console.log(data, status, headers, config);
             });
+        },
+
+        getAllUsers: function(){
+            return $http.get('api/users').then(function(allUsers){
+                console.log(allUsers.data);
+                return allUsers.data;
+            });
         }
     };
 

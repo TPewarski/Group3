@@ -19,13 +19,33 @@ app.factory('AdminFactory', function($http) {
 				});
 		},
 		deleteProduct: function(curentMedDelete) {
-			return $http.delete('/api/admin/deletepage', curentMedDelete).
+			return $http.delete('/api/admin/deletepage/'+curentMedDelete).
 			success(function(data, status, headers, config) {
 					console.log(data, status, headers, config);
 				}).
 				error(function(data, status, headers, config) {
 					console.log(data, status, headers, config);
 				});
+		},
+		makeAdmin: function(aUser){
+			var aUser = {_id: aUser, isAdmin: true};
+			return $http.put('api/users', aUser).
+			    success(function(data, status, headers, config) {
+                console.log(data, status, headers, config);
+            }).
+            error(function(data, status, headers, config) {
+                console.log(data, status, headers, config);
+            });
+		},
+		deleteUser: function(user){
+			
+			return $http.delete('api/users/'+user).
+			success(function(data, status, headers, config) {
+                console.log(data, status, headers, config);
+            }).
+            error(function(data, status, headers, config) {
+                console.log(data, status, headers, config);
+            });
 		}
 	};
 });
@@ -47,10 +67,21 @@ app.controller('AdminController', function($scope, AdminFactory, $stateParams, p
 			$state.go("products");
 		};
 
-		$scope.deleteMed = function(){
-			AdminFactory.deleteProduct($scope.currentMed);
-			console.log("delete me", $scope.currentMed);
+		$scope.deleteMed = function(prodID){
+			console.log(prodID);
+			AdminFactory.deleteProduct(prodID);
 			$state.go("products");
+		};
+
+		$scope.makeAnAdmin = function(id){
+			AdminFactory.makeAdmin(id);
+			//change in arr?
+		};
+
+		$scope.deleteAUser = function(id){
+			console.log("clicked");
+			AdminFactory.deleteUser(id);
+			//delete from arr
 		};
 	});
 
