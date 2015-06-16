@@ -28,8 +28,13 @@ router.post('/', function(req, res){
 });
 
 router.put('/', function(req, res){
-    userModel.findByIdAndUpdate(req.body._id, req.body, {new: true}, function(err, upDate) {
+    userModel.findById(req.body._id, function(err, user) {
         if(err) return err;
-        res.send(upDate);
+        user.email = req.body.email
+        user.password = req.body.password;
+        user.save(function(err, user){
+            if(err) return err;
+            res.send(user);
+        });
     });
 });
