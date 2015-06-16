@@ -211,4 +211,5 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
           clearCart: clearCart,
           checkout: checkout
 	};
+
 });
