@@ -30,7 +30,7 @@ Licensed under MIT
 							Account Settings </a>
 						</li>
 						<li ng-click="displayCart()">
-							<a href="#" target="_blank">
+							<a href="#">
 							<i class="glyphicon glyphicon-shopping-cart"></i>
 							Cart </a>
 						</li>
@@ -38,6 +38,16 @@ Licensed under MIT
 							<a href="#">
 							<i class="glyphicon glyphicon-list-alt"></i>
 							Order History </a>
+						</li>
+						<li ng-click="" ng-if="isAnAdmin">
+							<a href="#">
+							<i class="glyphicon glyphicon-shopping-cart"></i>
+							Order Management </a>
+						</li>
+						<li ng-click="displayUsers()" ng-if="isAnAdmin">
+							<a href="#" >
+							<i class="glyphicon glyphicon-user"></i>
+							User Management </a>
 						</li>
 					</ul>
 				</div>
@@ -70,6 +80,17 @@ Licensed under MIT
             		I am Here
             	</userHistory>
 			   Some user related content goes here...
+
+			   <div ng-if="showUsers" ng-repeat="user in allUsers" ng-controller="AdminController">
+				   <div class="profile-usertitle">
+				   		<h4 class="profile-usertitle-name">{{user.email}}</h4>
+				   </div>
+			   		<div class="profile-userbuttons">
+				   		<button type="button" class="btn btn-success btn-sm" ng-click="makeAnAdmin(user._id)">Make Admin</button>
+						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteAUser(user._id)">Delete User</button>
+					</div>
+			   </div>
+
             </div>
 		</div>
 	</div>
