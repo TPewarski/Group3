@@ -56,4 +56,69 @@ cart should be a subdocument of the order document. instead of an embedded refer
 
 the frontend only knows by the status code if the data was good or bad
 
-app.factory what angular does is var 
+app.factory what angular does is var facName = function(). So your function is like a constructor function which is why the norm is to capitalize that shit.
+
+
+CheckList:
+
+Refine listing by categories(maybe we could put in sort by price? avg review? use a virtual for avg review?).
+
+cart:
+	specify shipping address
+	receive confirmation email and emails on order shipping out etc.
+	needs item subtotals
+
+Does viewing order history work??? we need to finish checkout I think asap.
+Need to just have a spot for current order detail like is shipped
+
+Admin:
+Product Management
+	manage product availability
+	be able to change all of the fields even change photo
+
+Order management
+	see all orders and filter by status
+	be able to change status (which should emit an email event on backend)mongo
+
+User management
+	Promote other accounts to have admin status
+	Delete a user
+	Trigger a password reset!!
+
+Data Validations
+	Product titles must be unique
+
+Users
+	must have valid email address which must be unique
+
+Orders
+	Orders must belong to a user or a guest session
+
+Reviews
+	All reviews must be x amount of characters
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

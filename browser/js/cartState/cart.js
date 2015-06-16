@@ -12,17 +12,19 @@ app.controller('CartController', function($scope, $state, cartFactory, productsF
 
     cartFactory.getAllCartItems().then(function(data){
         $scope.items = data;
-        
         $scope.totalPrice = cartFactory.totalPrice(data);
         
     });
 
     AuthService.getLoggedInUser().then(function(user){
         $scope.user = user;
+        console.log("user", user) ;
     });
 
     $scope.stripeCheckout = function(){
-        cartFactory.checkout($scope.user._id);    
+        console.log("user after checkout", $scope.user._id);
+        cartFactory.checkout($scope.user._id);
+        $state.go('products');
     };
 
     $scope.deleteCartItem = function(id){
@@ -41,8 +43,8 @@ app.controller('CartController', function($scope, $state, cartFactory, productsF
 
     $scope.inventoryQuantity = function(productName){
     	
-    	return productsFactory.getInventoryQuantity(productName)
-    }
+    	return productsFactory.getInventoryQuantity(productName);
+    };
     
 
 
