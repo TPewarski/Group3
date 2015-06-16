@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="thumbnail">
+        <div class="col-md-4">
+            <img class="img-responsive" src="{{order.imgPath}}" alt="">
+        </div>
+        <div class="col-md-8">
+            <div class="caption-full">
+                <h4 class="pull-right">${{order.price}}</h4>
+                <h4><a href="#">{{order.name}}</a>
+                </h4>
+                <p>{{order.description}}</p>
+
+            </div>
+            <div class="ratings">
+                <p class="pull-right">
+                    <button class="btn btn-success" ng-click="addToCart(anItem._id)">
+                    	<span class="glyphicon glyphicon-shopping-cart"></span> Buy Again
+                    </button>
+                </p>
+                <p>
+                    <h4>Date Ordered</h4>
+                    <p>
+                        {{order.dateClosed}}
+                    </p>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
