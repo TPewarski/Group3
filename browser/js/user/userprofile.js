@@ -25,23 +25,23 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
     AuthService.getLoggedInUser().then(function(user) {
         $scope.theUser = user;
         $scope.isAnAdmin = user.isAdmin;
-        console.log($scope.theUser);
+        console.log($scope.theUser);    
     });
 
     $scope.displaySettings = function(){
         if($scope.showSettings) $scope.showSettings = false;
         else $scope.showSettings = true;
-        console.log($scope.theUser.email);
+        
     };
 
     $scope.displayCart = function(){
-        console.log("going to cart");
+        
         $state.go("cart");
     };
 
     $scope.displayOrdHistory = function(){
         UserFactory.getOrderHistory($scope.theUser._id).then(function(data){
-            console.log("data", data);
+            
             $scope.orders = data;
         });
         if($scope.showHistory) $scope.showHistory = false;
@@ -49,7 +49,7 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
     };
 
     $scope.submitUserEdit = function(){
-        console.log($scope.theUser);
+        
         UserFactory.sendEdit($scope.theUser);
 
     };

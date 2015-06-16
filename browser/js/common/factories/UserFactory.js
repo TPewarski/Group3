@@ -4,7 +4,6 @@ app.factory('UserFactory', function ($http) {
         displayCart: function() {
             console.log("going to cart");
         },
-
         getOrderHistory: function(userID){
             return $http.get('api/orders', {
                 params: {user: userID}
@@ -12,7 +11,6 @@ app.factory('UserFactory', function ($http) {
                 return response.data;
             });
         },
-
         sendEdit: function(userEdit){
             return $http.put('api/users', userEdit).
             success(function(data, status, headers, config) {

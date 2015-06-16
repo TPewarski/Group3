@@ -17,8 +17,7 @@ var schema = new mongoose.Schema({
     },
     inventoryQuantity: {
         type: Number,
-        required: true,
-        default: 0.00
+        required: true
     },
     categories: {
         type: [String]
