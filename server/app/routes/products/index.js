@@ -8,7 +8,7 @@ router.get('/', function(req, res){
         // console.log("data", data);
         res.send(data);
     }, function(err){
-        res.send(err);
+        res.status(500).send(err.message);
     });
 });
 
@@ -16,7 +16,7 @@ router.get('/:id', function(req, res){
     productModel.findById(req.params.id).exec().then(function(data){
         res.send(data);
     }, function(err){
-        res.send(err);
+        res.status(500).send(err.message);
     });
 });
 
