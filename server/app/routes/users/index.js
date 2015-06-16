@@ -27,7 +27,15 @@ router.post('/', function(req, res){
     });
 });
 
-router.put('/:id', function(req, res){
-    console.log('LOGGING', req.body);
-    userModel.update({_id: req.params.id}, {$set: {cart: req.body.cart}});
+
+router.put('/', function(req, res){
+    userModel.findById(req.body._id, function(err, user) {
+        if(err) return err;
+        user.email = req.body.email
+        user.password = req.body.password;
+        user.save(function(err, user){
+            if(err) return err;
+            res.send(user);
+        });
+    });
 });
