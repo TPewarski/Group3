@@ -92,7 +92,7 @@ gulp.task('seedDB', function () {
         {
             _id: "222222222222222222222222",
             name: "Prozium",
-            description: "At the cost of the dizzying highs of human emotion, we have suppressed its abysmal lows. Prozium. Now we are at peace with ourselves and human kind is one. War is gone. Hate, a memory. We are our own conscience now, and it is this conscience that guides us to rate EC-10, for emotional content, all those things that might tempt us to feel, again, and destroy them.",
+            description: "At the cost of the dizzying highs of human emotion, we have suppressed its abysmal lows. Now we are at peace with ourselves and human kind is one. We are our own conscience now, and it is this conscience that guides us to rate EC-10, for emotional content, all those things that might tempt us to feel, again.",
             price: 42,
             inventoryQuantity: 999,
             categories: ['Anti-depressants', 'Anti-psychotic',],
@@ -107,11 +107,11 @@ gulp.task('seedDB', function () {
             imgPath: "http://images.ddccdn.com/images/pills/nlm/000251525.jpg"
         },
         {
-            name: "Melange",
+            name: "Melange 100mg",
             description: "The spice must flow.",
-            price: 100000,
+            price: 1000000,
             inventoryQuantity: 999999,
-            categories: ['Psychotic', 'Blue Eyes'],
+            categories: ['Psychotic', 'Longevity'],
             imgPath: "http://steve-lovelace.com/wordpress/wp-content/uploads/2012/04/atreides-brand-spice-melange.jpg"
         },
         {

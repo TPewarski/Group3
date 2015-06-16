@@ -28,5 +28,6 @@ router.post('/', function(req, res){
 });
 
 router.put('/:id', function(req, res){
-    userModel.update({_id: req.params.id}, req.body);
+    console.log('LOGGING', req.body);
+    userModel.update({_id: req.params.id}, {$set: {cart: req.body.cart}});
 });

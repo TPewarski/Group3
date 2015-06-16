@@ -11,6 +11,7 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
 		var items = [];
         var itemsIdIndex = [];
 
+
         var totalPrice = function(arr){ 
             console.log(AuthService.isAuthenticated())
             var cost = 0
@@ -20,6 +21,7 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
             })
             return cost;
         }
+
         var cartCount = function(){
             return items.length;
         }
@@ -41,7 +43,7 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
             $rootScope.$broadcast('CartChanged');
         }
         var updateOneQuantity = function(id, newQuant) {
-            self = this;
+            var self = this;
             
             var itemIndex = itemsIdIndex.indexOf(id);
             if(itemIndex !== -1){
@@ -67,7 +69,10 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
             if(items){
                 popItemIDIndex();
             } else { items = [] };
-            //If user is logged
+        }
+
+        var syncDB = function() {
+            console.log("SYNCING DATABASE")
             if(AuthService.isAuthenticated()){
                 AuthService.getLoggedInUser().then(function(user){
                     if(items.length > 0){
@@ -88,10 +93,23 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
                             })
                         }
                     }
+                    //Sync Backend here
+                    var newItem = items.map(function(item){
+                        delete item["id"];
+                        return item;
+                    })
+                    console.log(newItem);
+                    $http.put('/api/users/'+ user._id, {cart: newItem}).then(function(){
+                        update();
+                    });
                 })
-
             }
         }
+
+        $rootScope.$on('auth-login-success', function(){
+            syncDB();
+        })
+
         var del = function(itemID){
             var self = this;
             self.update();
