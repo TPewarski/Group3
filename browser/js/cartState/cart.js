@@ -3,10 +3,10 @@ app.config(function($stateProvider){
 		url: '/cart',
 		controller: 'CartController',
 		templateUrl: 'js/cartState/cart.html'
-	})
+	});
 });
 
-app.controller('CartController', function($scope, $state, cartFactory, productsFactory){
+app.controller('CartController', function($scope, $state, cartFactory, productsFactory, AuthService){
 
     cartFactory.update();
 
@@ -17,19 +17,21 @@ app.controller('CartController', function($scope, $state, cartFactory, productsF
         
     });
 
+    AuthService.getLoggedInUser().then(function(user){
+        $scope.user = user;
+    });
 
     $scope.stripeCheckout = function(){
-        cartFactory.checkout();
-    }
+        cartFactory.checkout($scope.user._id);    
+    };
 
     $scope.deleteCartItem = function(id){
         cartFactory.del(id);
-
-    }
+    };
 
     $scope.updateQuantity = function(id, quantity){
         cartFactory.updateOneQuantity(id, quantity);
-    }
+    };
 
     
     $scope.goToProduct = function(id) {

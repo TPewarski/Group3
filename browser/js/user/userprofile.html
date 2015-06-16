@@ -76,7 +76,7 @@ Licensed under MIT
 				    <button ng-click="submitUserEdit()" class="btn btn-default userSettingsEdit-btn">Submit</button>
 				</form>
 
-            	<userHistory ng-show="showHistory">
+            	<userHistory ng-show="showHistory" ng-repeat="order in orders">
             		I am Here
             	</userHistory>
 			   Some user related content goes here...

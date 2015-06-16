@@ -41,8 +41,8 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
 
     $scope.displayOrdHistory = function(){
         UserFactory.getOrderHistory($scope.theUser._id).then(function(data){
-            
             $scope.orders = data;
+            console.log("order history", $scope.orders);
         });
         if($scope.showHistory) $scope.showHistory = false;
         else $scope.showHistory = true;
