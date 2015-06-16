@@ -7,98 +7,155 @@ function localSetCart (cart) {
     window.localStorage.setItem('cart',JSON.stringify(cart));
 }
 
-app.factory('cartFactory', function($http, $q, $rootScope){
-	return {
-			// maybe do it in this format?? {product: {}, quantity: num}
-		items: [], 
-        itemIDindex : [],
+app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session){
+		var items = [];
+        var itemsIdIndex = [];
 
-        totalPrice: function(arr){
+
+        var totalPrice = function(arr){ 
+            console.log(AuthService.isAuthenticated())
             var cost = 0
             var self = this;
             arr.forEach(function(item, index){
-                cost += item.product.price * item.quant;
+                cost += item.product.price * item.quantity;
             })
             return cost;
-        },
-        //Don't push to items, use this method instead. 
-        add: function(newItemID) { 
+        }
+
+        var cartCount = function(){
+            return items.length;
+        }
+
+        var add = function(newItemID) { 
 
             var self = this;
-            var itemIndex = self.itemIDindex.indexOf(newItemID.id);
             
+            var itemIndex = itemsIdIndex.indexOf(newItemID.id);
             
             if (itemIndex === -1){
-                self.items.push(newItemID);
-                self.itemIDindex.push(newItemID.id);
-                localSetCart(self.items);
+                items.push(newItemID);
+                itemsIdIndex.push(newItemID.id);
+                localSetCart(items);
             } else {
-                self.items[itemIndex].quant += 1;
-                localSetCart(self.items);
+                items[itemIndex].quantity += 1;
+                localSetCart(items);
             }
             $rootScope.$broadcast('CartChanged');
-        },
-        updateOneQuantity: function(id, newQuant) {
-            self = this;
+        }
+        var updateOneQuantity = function(id, newQuant) {
+            var self = this;
             
-            var itemIndex = self.itemIDindex.indexOf(id);
+            var itemIndex = itemsIdIndex.indexOf(id);
             if(itemIndex !== -1){
-                if(newQuant !== 0) { self.items[itemIndex].quant = newQuant; }
+                if(newQuant !== 0) { items[itemIndex].quantity = newQuant; }
                 else { self.del(id); }
             }
-            localSetCart(self.items);
+            localSetCart(items);
             $rootScope.$broadcast('CartChanged');
-        },
-        //Use this function to link local storage cart to items
-        update: function(){
-            console.log("updateingsdasda")
-            var self = this;
-            self.items = localGetCart();
-            if(true){
-                self.itemIDindex = self.items.map(function(item){
+        }
+
+        var popItemIDIndex = function(){
+            if(items && items.length > 0){
+                itemsIdIndex = items.map(function(item){
                     return item.id;
+                })
+            } else { itemsIdIndex = []};            
+        }
+
+        //Use this function to link local storage cart to items
+        var update = function(){
+            //Synchronize things in this factory with local storage
+            items = localGetCart();
+            if(items){
+                popItemIDIndex();
+            } else { items = [] };
+        }
+
+        var syncDB = function() {
+            console.log("SYNCING DATABASE")
+            if(AuthService.isAuthenticated()){
+                AuthService.getLoggedInUser().then(function(user){
+                    if(items.length > 0){
+                        user.cart = items.map(function(item){
+                            item.product = item.id;
+                            return item;
+                            //Match up the front end keys with back end keys. 
+                            //Probaby better to do this from the start but it's too late now. Lavos is here. Gabe you will never see this. BWHAHAHAHHA
+                        });
+                    }
+                    else{
+                        if(user.cart.length > 0){ 
+                            //We have deduced that the local cart is empty but the remote cart is full. 
+                            //The backend will now override the front end. 
+                            items = user.cart.map(function(item){
+                                item.id = item.product;
+                                return item;
+                            })
+                        }
+                    }
+                    //Sync Backend here
+                    var newItem = items.map(function(item){
+                        delete item["id"];
+                        return item;
+                    })
+                    console.log(newItem);
+                    $http.put('/api/users/'+ user._id, {cart: newItem}).then(function(){
+                        update();
+                    });
                 })
             }
-        },
-        del: function(itemID){
+        }
+
+        $rootScope.$on('auth-login-success', function(){
+            syncDB();
+        })
+
+        var del = function(itemID){
             var self = this;
             self.update();
-            console.log(self.items, self.itemIndex);
-            var indexToDelete = self.itemIDindex.indexOf(itemID);
-            self.items.splice(indexToDelete,1);
-            self.itemIDindex.splice(indexToDelete,1);
-            localSetCart(self.items);
+            
+            var indexToDelete = itemsIdIndex.indexOf(itemID);
+            items.splice(indexToDelete,1);
+            itemsIdIndex.splice(indexToDelete,1);
+            localSetCart(items);
             $rootScope.$broadcast('CartChanged');
-        },
-        get: function(){
-            this.items = localGetCart();
-            if(this.items){
-                this.itemIDindex = this.items.map(function(item){
+        }
+        var get = function(){
+            items = localGetCart();
+            if(items){
+                itemsIdIndex = items.map(function(item){
                     return item.id;
                 })
-                return this.items;
+                return items;
             } else {
                 localSetCart([]);
                 return new Array();
             }
-        },
-        getAllCartItems: function(item){
-            if(!item) return [];
-            return $q.all(item.map(function(itemIDandQuantity){
+        }
+        var getAllCartItems = function(){
+            if(!items) items = [];
+
+            return $q.all(items.map(function(itemIDandQuantity){
                 return $http.get('/api/products/'+itemIDandQuantity.id);
             }))
             .then(function(results){
                 return results.map(function(result, index){
                     var newObject = {};
                     newObject.product = result.data;
-                    newObject.quant = item[index].quant;
+                    newObject.quantity = items[index].quantity;
                     return newObject;
-                });
-            })
-
+                })
+            });
         }
-
-
-		//userId or session ID
+   
+    return {
+          totalPrice: totalPrice,
+          add: add,
+          get: get,
+          del: del,
+          update: update,
+          updateOneQuantity: updateOneQuantity,
+          getAllCartItems: getAllCartItems,
+          cartCount: cartCount
 	}
 });

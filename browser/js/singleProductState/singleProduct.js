@@ -31,7 +31,7 @@ app.controller('SingleProductController', function($scope, productsFactory, Auth
 	$scope.addToCart = function(id){
 
 		// $cookies.put("key", "val");
-		cartFactory.add({id:id,quant:1});
+		cartFactory.add({id:id,quantity:1});
 	};
 	$scope.toggleReviewForm = function(){
 		console.log("showReviewForm", $scope.showReviewForm)

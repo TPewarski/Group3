@@ -20,13 +20,12 @@ router.get('/:id', function(req, res){
     });
 });
 
-router.post('/', function(req, res){
+router.post('/', function(req, res, next){
     var product = req.body;
     productModel.create(product).then(function(createdProduct){
         res.send(createdProduct);
-    }, function(err){
-        res.status(500).send(err.message);
-    });
+    })
+    .then(null, next)
 });
 
 router.put('/:id', function(req, res){

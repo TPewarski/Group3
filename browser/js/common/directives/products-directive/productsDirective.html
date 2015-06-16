@@ -3,7 +3,7 @@
         <img src="{{product.imgPath}}" alt="">
         <div class="caption">
             <h4><a href="#">{{product.name}}</a>
-            <h4 class="">${{product.price}}</h4>
+            <h4 class="">{{product.price | currency}}</h4>
             </h4>
             <p>{{product.description}}</p>
         </div>

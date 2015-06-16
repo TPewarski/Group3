@@ -8,29 +8,31 @@ app.config(function($stateProvider){
 
 app.controller('CartController', function($scope, $state, cartFactory, productsFactory){
 
-    cartFactory.getAllCartItems(cartFactory.get()).then(function(data){
+    cartFactory.getAllCartItems().then(function(data){
         $scope.items = data;
+        
         $scope.totalPrice = cartFactory.totalPrice(data);
         
     });
 
-    this.stripeCheckout = function(){
-        console.log("CHECKED OUT BOYYYY")
+    $scope.stripeCheckout = function(){
+        console.log(arguments);
+        //THIS WORKS! now just gotta get it to clear cart and transfer all the information to orders. 
     }
 
     $scope.deleteCartItem = function(id){
         cartFactory.del(id);
-        //$scope.$apply(); //WHY WONT THIS WORK
+
     }
 
-    $scope.updateQuantity = function(){
-        //gotta figure this shit out. fuuuuuuuckkkkkk
+    $scope.updateQuantity = function(id, quantity){
+        cartFactory.updateOneQuantity(id, quantity);
     }
 
     
-    $scope.goToProduct = function() {
-        console.log($scope.product);
-        $state.go('singleProduct', {theID: $scope.item._id});
+    $scope.goToProduct = function(id) {
+        
+        $state.go('singleProduct', {theID: id});
     };
 
     $scope.inventoryQuantity = function(productName){

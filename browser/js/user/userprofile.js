@@ -13,6 +13,8 @@ app.config(function($stateProvider) {
 
 });
 
+
+
 app.factory('UserFactory', function ($http) {
 
     return {
@@ -36,11 +38,11 @@ app.factory('UserFactory', function ($http) {
             error(function(data, status, headers, config) {
                 console.log(data, status, headers, config);
             });
-    }
-
+        }
     };
 
 });
+
 
 
 app.controller('UserController', function($scope, $state, AuthService, UserFactory) {
