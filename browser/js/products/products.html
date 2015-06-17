@@ -16,10 +16,29 @@
             </div>
 
             <div class="col-md-9">
+                <div ng-controller="CarouselDemoCtrl">
+                  <div style="height: 305px">
+                    <carousel interval="myInterval">
+                      <slide ng-repeat="slide in slides" active="slide.active" style="background:black">
+                        <center>
+                        <img style="height: 305px" ng-src="{{slide.image}}" style="margin:auto;">
+                    </center>
+                        <div class="carousel-caption">
+                          <h4>{{slide.name}}</h4>
+                          <p>{{slide.text}}</p>
+                        </div>
+                      </slide>
+                    </carousel>
+                  </div>
 
+                </div>
+
+<!-- 
                 <div class="row carousel-holder">
 
                     <div class="col-md-12">
+
+
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -46,7 +65,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> -->
 
  				<product ng-repeat="product in products | filter:searchBod " ng-controller="ProductDirectiveController"></product>
 
