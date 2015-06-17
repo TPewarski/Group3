@@ -18,7 +18,7 @@ app.config(function($stateProvider) {
 
 
 app.controller('UserController', function($scope, $state, AuthService, UserFactory) {
-    $scope.showHistory = false;
+    $scope.showHistory = true;
     $scope.showSettings = false;
     $scope.isAnAdmin = false;
     $scope.showUsers = false;
@@ -37,11 +37,15 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
 
     $scope.displaySettings = function(){
         if($scope.showSettings) $scope.showSettings = false;
-        else $scope.showSettings = true; 
+        else { 
+            $scope.showSettings = true; 
+            $scope.showHistory = false;
+            $scope.adminOrders = false;
+            $scope.showUsers = false;
+        }
     };
 
     $scope.displayCart = function(){
-        
         $state.go("cart");
     };
 
@@ -52,7 +56,12 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
             console.log("order history", $scope.orders);
         });
             if($scope.showHistory) $scope.showHistory = false;
-            else $scope.showHistory = true;
+            else {
+                $scope.showHistory = true;
+                $scope.showSettings = false;
+                $scope.adminOrders = false;
+                $scope.showUsers = false;
+            }
     };
 
     $scope.adminOrdersDisplay = function(){
@@ -61,7 +70,12 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
             UserFactory.getAllOrders().then(function(allOrders){
                 $scope.allOrders = allOrders;
                 if($scope.adminOrders) $scope.adminOrders = false;
-                else $scope.adminOrders = true;
+                else {
+                    $scope.adminOrders = true;
+                    $scope.showHistory = false;
+                    $scope.showSettings = false;
+                    $scope.showUsers = false;
+                }
             });
         }
     };
@@ -76,7 +90,12 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
             UserFactory.getAllUsers().then(function(allUsers){
                 $scope.allUsers = allUsers;
                 if($scope.showUsers) $scope.showUsers = false;
-                else $scope.showUsers = true;
+                else {
+                    $scope.showUsers = true;
+                    $scope.adminOrders = false;
+                    $scope.showHistory = false;
+                    $scope.showSettings = false;
+                }
             });
         }
     };
