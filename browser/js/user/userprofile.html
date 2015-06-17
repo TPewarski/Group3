@@ -76,9 +76,7 @@ Licensed under MIT
 				    <button ng-click="submitUserEdit()" class="btn btn-default userSettingsEdit-btn">Submit</button>
 				</form>
 
-            	<userHistory ng-show="showHistory">
-            		I am Here
-            	</userHistory>
+	            	<user-history ng-if="showHistory" ng-repeat="order in orders track by $index"></user-history>
 			   Some user related content goes here...
 
 			   <div ng-if="showUsers" ng-repeat="user in allUsers" ng-controller="AdminController">
@@ -95,8 +93,5 @@ Licensed under MIT
 		</div>
 	</div>
 </div>
-<center>
-	<strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
-</center>
 <br>
 <br>
