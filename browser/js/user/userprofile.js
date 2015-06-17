@@ -30,15 +30,14 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
         $scope.isAnAdmin = user.isAdmin;
         console.log($scope.theUser);    
         UserFactory.getOrderHistory($scope.theUser._id).then(function(data){
-            console.log("order history", data)
+            console.log("order history", data);
             $scope.orders = data;
         });
     });
 
     $scope.displaySettings = function(){
         if($scope.showSettings) $scope.showSettings = false;
-        else $scope.showSettings = true;
-        
+        else $scope.showSettings = true; 
     };
 
     $scope.displayCart = function(){

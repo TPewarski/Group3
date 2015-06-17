@@ -1,28 +1,40 @@
-<div class="row">
-    <div class="thumbnail">
-        <div class="col-md-2">
-            <h4>{{ $index + 1 }}<h4>
-                    </div>
-        <div class="col-md-10">
-            <div class="ratings">
-                <p>
-                    <h5>Date Ordered:
-                        <span>
-                            {{ order.dateClosed.slice(0, 10) }}
-                        </span>
-                    </h5>
-                </p>
-            </div>
-
-                <div class="orderItem" ng-repeat="item in order.cart">
-                    <span>{{ item.name }}</span>
-                    <span class="pull-right">Amount: {{ item.quantity }}</span>
-                    <span class="pull-right">Price: {{ item.price | currency }}</span>
-                    <span class="pull-right"> Subtotal: {{ item.price * item.quantity | currency }}
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h5>Date Ordered</h5>
+                    <p>{{order.dateClosed.slice(0, 10)}}</p>
                 </div>
-                <h5>
-                <h5>Total Price: {{ TotalPrice() | currency }} </h5>
+                <div class="col-xs-6">
+                    <h5>Total</h5>
+                    <p>{{TotalPrice() | currency}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="panel-body">
+        <div ng-repeat="item in order.cart" > 
+            <div class="row">
+                <div class="col-xs-2"><img class="img-responsive" src="{{item.imgPath}}" ng-click="goToProduct(item.product._id)">
+                </div>
+                <div class="col-xs-4" >
+                    <h4 class="product-name"><strong ng-click="goToProduct(item.product._id)">{{item.name}}</strong></h4><h4><small></small></h4>
+                </div>
+
+                <div class="col-xs-6">
+                    <div class="col-xs-6 text-right">
+                        <span><strong>{{item.price | currency}}</strong></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="profile-userbuttons">
+                <span class="pull-right">Subtotal: {{ item.quantity }}</span>
+                <span class="pull-right"> Amt: {{ item.price * item.quantity | currency }}</span>
+            </div>
+            <hr>
         </div>
     </div>
 </div>
