@@ -37,7 +37,7 @@ app.factory('UserFactory', function ($http) {
 
         setStatusShipped: function(id){
 
-            return $http.put('api/orders/'+id, {isShipped: true}).then(function(doc){
+            return $http.put('api/orders', {_id: id, isShipped: true}).then(function(doc){
                 console.log("success", doc)
             }, function(err){
                 console.log("put error", err)
@@ -45,7 +45,11 @@ app.factory('UserFactory', function ($http) {
         },
 
         setStatusClosed: function(id){
-
+            return $http.put('api/orders', {_id: id, isClosed: true}).then(function(doc){
+                console.log("success", doc)
+            }, function(err){
+                console.log("put error", err)
+            })
         }
     };
 

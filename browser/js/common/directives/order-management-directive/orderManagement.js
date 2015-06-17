@@ -16,7 +16,7 @@ app.directive('ordermanagement', function(UserFactory) {
 			};
 
 			scope.setStatusClosed = function(id){
-				UserFactory.setStatusClosed
+				UserFactory.setStatusClosed(id)
 			}
 
 		}

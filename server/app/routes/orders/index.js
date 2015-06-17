@@ -31,13 +31,14 @@ router.post('/', function(req, res){
 
 //WHEN CREATING AN ORDER, HOW TO POPULATE AND FILL IT RIGHT AFTER PLACING PRODUCT ID's IN?
 
-router.put('/:id', function(req, res){
-    console.log("")
-    orderModel.update({_id: req.params.id}, req.body).then(function(doc){
-        console.log("doc", doc)
-        res.send(doc)
-    }, function(err){
-        console.log("err", err)
-        res.status(500).send(err)
+router.put('/', function(req, res){
+    orderModel.findById(req.body._id, function(err, order){
+        order.isShipped = req.body.isShipped || order.isShipped;
+        order.isClosed =req.body.isClosed || order.isClosed;
+        order.save(function(err, user){
+            if(err) res.status(500).send(err);
+            res.send(user)
+        });
     });
+    
 });
