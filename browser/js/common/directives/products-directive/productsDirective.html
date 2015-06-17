@@ -1,12 +1,16 @@
 <div class="col-sm-4 col-lg-4 col-md-4 product-directive" ng-click="goToProduct()">
-    <div class="thumbnail">
-        <img src="{{product.imgPath}}" alt="">
-        <div class="caption">
-            <h4><a href="#">{{product.name}}</a>
-            <h4 class="">{{product.price | currency}}</h4>
-            </h4>
-            <p>{{product.description}}</p>
+    <div class="dir-container">
+        <div class="thumbnail">
+            <div class="prod-img-container">  
+                <img src="{{product.imgPath}}" class="prod-img">
+            </div>
+            <div class="caption">
+                <h4><a href="#">{{product.name}}</a>
+                <h4 class="">{{product.price | currency}}</h4>
+                </h4>
+                <p>{{product.description.slice(0, 25)+ "..."}}</p>
+            </div>
+            <button class="btn btn-default" id="admin-edit" ng-show="adminLoggedIn" ng-click="editProduct(product._id)">Admin</button>
         </div>
-        <button class="btn btn-default" id="admin-edit" ng-show="adminLoggedIn" ng-click="editProduct(product._id)">Admin</button>
     </div>
 </div>
