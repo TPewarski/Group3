@@ -18,6 +18,9 @@ var orderSchema = new mongoose.Schema({
             },
             quantity: {
                 type: Number, default: 0
+            },
+            imgPath: {
+                type: String
             }
         }],
     isClosed: {type: Boolean, default: false},

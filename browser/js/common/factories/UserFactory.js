@@ -11,6 +11,13 @@ app.factory('UserFactory', function ($http) {
                 return response.data;
             });
         },
+
+        getAllOrders: function(){
+            return $http.get('api/orders').then(function(allOrders){
+                console.log("all orders", allOrders.data);
+                return allOrders.data;
+            });
+        },
         sendEdit: function(userEdit){
             return $http.put('api/users', userEdit).
             success(function(data, status, headers, config) {
@@ -23,7 +30,7 @@ app.factory('UserFactory', function ($http) {
 
         getAllUsers: function(){
             return $http.get('api/users').then(function(allUsers){
-                console.log(allUsers.data);
+                console.log("all users", allUsers.data);
                 return allUsers.data;
             });
         }

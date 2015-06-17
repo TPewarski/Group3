@@ -7,7 +7,7 @@ function localSetCart (cart) {
     window.localStorage.setItem('cart',JSON.stringify(cart));
 }
 
-app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session){
+app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session, $state){
 		var items = [];
         var itemsIdIndex = [];
         var itemsArrayForOrders = []; //Refactor this later. Look below in getcartitems for what this is 
@@ -180,21 +180,22 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session)
             var cartToSend = itemsArrayForOrders.map(function(product, index){
                 var newItem = {};
                 newItem.name = product.name;
+                newItem.imgPath = product.imgPath;
                 newItem.price = product.price;
                 newItem.quantity = items[index].quantity;
                 return newItem;
-            })
+            });
 
             var newOrder = {
                 user: userId,
                 cart: cartToSend
-            }
+            };
 
             return $http.post('/api/orders', newOrder)
             .success(function(data){
                 console.log("ORDER SUCCESS!!!", data);
                 clearCart();
-                $state.go('products')
+                $state.go('products');
 
 
             });

@@ -17,11 +17,12 @@ app.config(function($stateProvider) {
 
 
 
-app.controller('UserController', function($scope, $state, AuthService, UserFactory ) {
+app.controller('UserController', function($scope, $state, AuthService, UserFactory) {
     $scope.showHistory = false;
     $scope.showSettings = false;
     $scope.isAnAdmin = false;
     $scope.showUsers = false;
+    $scope.adminOrders = false;
     AuthService.getLoggedInUser().then(function(user) {
         $scope.theUser = user;
         $scope.isAnAdmin = user.isAdmin;
@@ -48,10 +49,19 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
         else $scope.showHistory = true;
     };
 
-    $scope.submitUserEdit = function(){
-        
-        UserFactory.sendEdit($scope.theUser);
+    $scope.adminOrdersDisplay = function(){
+        console.log("clicked");
+        if($scope.isAnAdmin){
+            UserFactory.getAllOrders().then(function(allOrders){
+                $scope.allOrders = allOrders;
+                if($scope.adminOrders) $scope.adminOrders = false;
+                else $scope.adminOrders = true;
+            });
+        }
+    };
 
+    $scope.submitUserEdit = function(){  
+        UserFactory.sendEdit($scope.theUser);
     };
 
     $scope.displayUsers = function(){

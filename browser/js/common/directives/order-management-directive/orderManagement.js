@@ -1,7 +1,7 @@
-app.directive('userHistory', function() {
+app.directive('ordermanagement', function() {
 	return {
 		restrict: 'E',
-		templateUrl: 'js/common/directives/order-history-directive/userHistoryDirective.html',
+		templateUrl: 'js/common/directives/order-management-directive/orderManagement.html',
 		link: function (scope, ele, attr){
 			
 		}
