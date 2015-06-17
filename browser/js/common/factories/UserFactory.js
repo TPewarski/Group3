@@ -33,6 +33,23 @@ app.factory('UserFactory', function ($http) {
                 console.log("all users", allUsers.data);
                 return allUsers.data;
             });
+        },
+
+        setStatusShipped: function(id){
+
+            return $http.put('api/orders', {_id: id, isShipped: true}).then(function(doc){
+                console.log("success", doc)
+            }, function(err){
+                console.log("put error", err)
+            })
+        },
+
+        setStatusClosed: function(id){
+            return $http.put('api/orders', {_id: id, isClosed: true}).then(function(doc){
+                console.log("success", doc)
+            }, function(err){
+                console.log("put error", err)
+            })
         }
     };
 
