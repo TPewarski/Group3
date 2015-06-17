@@ -1,29 +1,28 @@
 <div class="row">
     <div class="thumbnail">
-        <div class="col-md-4">
-            <img class="img-responsive" src="{{order.imgPath}}" alt="">
-        </div>
-        <div class="col-md-8">
-            <div class="caption-full">
-                <h4 class="pull-right">${{order.price}}</h4>
-                <h4><a href="#">{{order.name}}</a>
-                </h4>
-                <p>{{order.description}}</p>
-
-            </div>
+        <div class="col-md-2">
+            <h4>{{ $index + 1 }}<h4>
+                    </div>
+        <div class="col-md-10">
             <div class="ratings">
-                <p class="pull-right">
-                    <button class="btn btn-success" ng-click="addToCart(anItem._id)">
-                    	<span class="glyphicon glyphicon-shopping-cart"></span> Buy Again
-                    </button>
-                </p>
                 <p>
-                    <h4>Date Ordered</h4>
-                    <p>
-                        {{order.dateClosed}}
-                    </p>
+                    <h5>Date Ordered:
+                        <span>
+                            {{ order.dateClosed.slice(0, 10) }}
+                        </span>
+                    </h5>
                 </p>
             </div>
+
+                <div class="orderItem" ng-repeat="item in order.cart">
+                    <span>{{ item.name }}</span>
+                    <span class="pull-right">Amount: {{ item.quantity }}</span>
+                    <span class="pull-right">Price: {{ item.price | currency }}</span>
+                    <span class="pull-right"> Subtotal: {{ item.price * item.quantity | currency }}
+                </div>
+                <h5>
+                <h5>Total Price: {{ TotalPrice() | currency }} </h5>
+
         </div>
     </div>
 </div>

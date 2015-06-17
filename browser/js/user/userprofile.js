@@ -22,10 +22,16 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
     $scope.showSettings = false;
     $scope.isAnAdmin = false;
     $scope.showUsers = false;
+    $scope.orders= null;
+    
     AuthService.getLoggedInUser().then(function(user) {
         $scope.theUser = user;
         $scope.isAnAdmin = user.isAdmin;
         console.log($scope.theUser);    
+        UserFactory.getOrderHistory($scope.theUser._id).then(function(data){
+            console.log("order history", data)
+            $scope.orders = data;
+        });
     });
 
     $scope.displaySettings = function(){
@@ -39,13 +45,13 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
         $state.go("cart");
     };
 
+
     $scope.displayOrdHistory = function(){
-        UserFactory.getOrderHistory($scope.theUser._id).then(function(data){
-            
-            $scope.orders = data;
-        });
+        console.log("am calling displayOrdHistory")
         if($scope.showHistory) $scope.showHistory = false;
         else $scope.showHistory = true;
+
+        console.log($scope.showHistory)
     };
 
     $scope.submitUserEdit = function(){
