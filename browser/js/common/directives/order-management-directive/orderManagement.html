@@ -3,8 +3,8 @@
         <div class="panel-title">
             <div class="row">
                 <div class="col-xs-6">
-                    <h5>{{aOrder.dateClosed}}</h5>
-                    <p>{{}}</p>
+                    <h5>Date Ordered</h5>
+                    <p>{{aOrder.dateClosed}}</p>
                 </div>
                 <div class="col-xs-6">
                     <h5>Total</h5>
@@ -13,26 +13,28 @@
             </div>
         </div>
     </div>
+
     <div class="panel-body">
-
-    <div ng-repeat="product in aOrder.cart" > 
-        <div class="row">
-            <div class="col-xs-2"><img class="img-responsive" src="{{product.imgPath}}" ng-click="goToProduct(item.product._id)">
-            </div>
-            <div class="col-xs-4" >
-                <h4 class="product-name"><strong ng-click="goToProduct(item.product._id)">{{product.name}}</strong></h4><h4><small></small></h4>
-            </div>
-
-            <div class="col-xs-6">
-                <div class="col-xs-6 text-right">
-                    <h6><strong>{{product.price | currency}}</strong></h6>
+        <div ng-repeat="product in aOrder.cart" > 
+            <div class="row">
+                <div class="col-xs-2"><img class="img-responsive" src="{{product.imgPath}}" ng-click="goToProduct(item.product._id)">
+                </div>
+                <div class="col-xs-4" >
+                    <h4 class="product-name"><strong ng-click="goToProduct(item.product._id)">{{product.name}}</strong></h4><h4><small></small></h4>
                 </div>
 
+                <div class="col-xs-6">
+                    <div class="col-xs-6 text-right">
+                        <h6><strong>{{product.price | currency}}</strong></h6>
+                    </div>
+
+                </div>
             </div>
+            <div class="profile-userbuttons">
+                <button type="button" class="btn btn-success btn-sm" ng-click="">Status</button>
+                <button type="button" class="btn btn-success btn-sm" ng-click="">Status</button>
+            </div>
+            <hr>
         </div>
-        <div class="profile-userbuttons">
-            <button type="button" class="btn btn-success btn-sm" ng-click="">Status</button>
-            <button type="button" class="btn btn-success btn-sm" ng-click="">Status</button>
-        </div>
-        <hr>
     </div>
+</div>
