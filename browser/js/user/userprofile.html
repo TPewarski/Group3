@@ -73,11 +73,9 @@ Licensed under MIT
 				    <button ng-click="submitUserEdit()" class="btn btn-default userSettingsEdit-btn">Submit</button>
 				</form>
 
-				<ordermanagement ng-show="true" ng-repeat="aOrder in allOrders">
-					
-				</ordermanagement>
-
-			   Some user related content goes here...
+				<ordermanagement ng-show="true" ng-repeat="aOrder in allOrders"></ordermanagement>
+				
+	            <user-history ng-if="showHistory" ng-repeat="order in orders track by $index"></user-history>
 
 			   <div ng-if="showUsers" ng-repeat="user in allUsers" ng-controller="AdminController">
 				   <div class="profile-usertitle">
@@ -93,8 +91,5 @@ Licensed under MIT
 		</div>
 	</div>
 </div>
-<center>
-	<strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
-</center>
 <br>
 <br>

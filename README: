@@ -78,7 +78,7 @@ Product Management
 
 Order management
 	see all orders and filter by status
-	be able to change status (which should emit an email event on backend)mongo
+	be able to change status (which should emit an email event on backend) mongo
 
 User management
 	Promote other accounts to have admin status
