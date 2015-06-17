@@ -2,11 +2,21 @@
     <div class="panel-heading">
         <div class="panel-title">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-3">
                     <h5>Date Ordered</h5>
                     <p>{{aOrder.dateClosed}}</p>
                 </div>
-                <div class="col-xs-6">
+                 <div class="col-xs-3">
+                    <h5>Shipping Status</h5>
+                    <p ng-if="order.isShipped">Shipped</p>
+                    <p ng-if="!order.isShipped">Pending</p>
+                </div>
+                <div class="col-xs-3">
+                    <h5>Order Status</h5>
+                    <p ng-if="order.isClosed">Closed</p>
+                    <p ng-if="!order.isClosed">Active</p>
+                </div>
+                <div class="col-xs-3">
                     <h5>Total</h5>
                     <p>{{}}</p>
                 </div>
