@@ -63,8 +63,8 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session,
 
         //Use this function to link local storage cart to items
         var update = function(){
-            console.log("Cart Items:", items);
-            console.log("itemsArrayForOrders:", itemsArrayForOrders);
+            
+            
             //Synchronize things in this factory with local storage
             if(items.length){ //If at least one thing exists.
                 popItemIDIndex();
@@ -193,7 +193,7 @@ app.factory('cartFactory', function($http, $q, $rootScope, AuthService, Session,
 
             return $http.post('/api/orders', newOrder)
             .success(function(data){
-                console.log("ORDER SUCCESS!!!", data);
+                
                 clearCart();
                 $state.go('products');
 
