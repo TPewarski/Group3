@@ -17,13 +17,17 @@ app.config(function($stateProvider) {
 
 
 
-app.controller('UserController', function($scope, $state, AuthService, UserFactory ) {
+app.controller('UserController', function($scope, $state, AuthService, UserFactory) {
     $scope.showHistory = false;
     $scope.showSettings = false;
     $scope.isAnAdmin = false;
     $scope.showUsers = false;
+<<<<<<< HEAD
+    $scope.adminOrders = false;
+=======
     $scope.orders= null;
     
+>>>>>>> b9e7b0c07795ac6d55e5a096e0399dbf30753fe9
     AuthService.getLoggedInUser().then(function(user) {
         $scope.theUser = user;
         $scope.isAnAdmin = user.isAdmin;
@@ -47,17 +51,27 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
 
 
     $scope.displayOrdHistory = function(){
-        console.log("am calling displayOrdHistory")
-        if($scope.showHistory) $scope.showHistory = false;
-        else $scope.showHistory = true;
-
-        console.log($scope.showHistory)
+        UserFactory.getOrderHistory($scope.theUser._id).then(function(data){
+            $scope.orders = data;
+            console.log("order history", $scope.orders);
+        });
+            if($scope.showHistory) $scope.showHistory = false;
+            else $scope.showHistory = true;
     };
 
-    $scope.submitUserEdit = function(){
-        
-        UserFactory.sendEdit($scope.theUser);
+    $scope.adminOrdersDisplay = function(){
+        console.log("clicked");
+        if($scope.isAnAdmin){
+            UserFactory.getAllOrders().then(function(allOrders){
+                $scope.allOrders = allOrders;
+                if($scope.adminOrders) $scope.adminOrders = false;
+                else $scope.adminOrders = true;
+            });
+        }
+    };
 
+    $scope.submitUserEdit = function(){  
+        UserFactory.sendEdit($scope.theUser);
     };
 
     $scope.displayUsers = function(){

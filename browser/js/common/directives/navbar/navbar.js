@@ -14,12 +14,12 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 
             $rootScope.$on("CartChanged", function(event){
                 scope.cartCount = cartFactory.cartCount();
-            })
+            });
 
             scope.items = [
                 { label: 'Home', state: 'home' },
                 { label: 'User Profile', state: 'membersOnly', auth: true },
-                { label: 'All Products', state: 'products',}
+                { label: 'All Products', state: 'products'}
             ];
 
             scope.user = null;

@@ -26,7 +26,7 @@ Licensed under MIT
 					<ul class="nav">
 						<li ng-click="displaySettings()">
 							<a href="#">
-							<i class="glyphicon glyphicon-user"></i>
+							<i class="glyphicon glyphicon-cog"></i>
 							Account Settings </a>
 						</li>
 						<li ng-click="displayCart()">
@@ -39,9 +39,9 @@ Licensed under MIT
 							<i class="glyphicon glyphicon-list-alt"></i>
 							Order History </a>
 						</li>
-						<li ng-click="" ng-if="isAnAdmin">
+						<li ng-click="adminOrdersDisplay()" ng-if="isAnAdmin">
 							<a href="#">
-							<i class="glyphicon glyphicon-shopping-cart"></i>
+							<i class="glyphicon glyphicon-list"></i>
 							Order Management </a>
 						</li>
 						<li ng-click="displayUsers()" ng-if="isAnAdmin">
@@ -56,9 +56,6 @@ Licensed under MIT
 		</div>
 		<div class="col-md-9">
             <div class="profile-content">
- <!--            	<userSettings ng-show="showSettings">
-            		
-            	</userSettings> -->
 
             	<form id="userSettingsEdit-form" name="userSettingsEdit" ng-show="showSettings">
 				    <alert type="danger" ng-show="error">
@@ -76,8 +73,9 @@ Licensed under MIT
 				    <button ng-click="submitUserEdit()" class="btn btn-default userSettingsEdit-btn">Submit</button>
 				</form>
 
-	            	<user-history ng-if="showHistory" ng-repeat="order in orders track by $index"></user-history>
-			   Some user related content goes here...
+				<ordermanagement ng-show="true" ng-repeat="aOrder in allOrders"></ordermanagement>
+				
+	            <user-history ng-if="showHistory" ng-repeat="order in orders track by $index"></user-history>
 
 			   <div ng-if="showUsers" ng-repeat="user in allUsers" ng-controller="AdminController">
 				   <div class="profile-usertitle">

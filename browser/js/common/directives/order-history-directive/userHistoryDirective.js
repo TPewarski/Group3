@@ -14,4 +14,3 @@ app.directive('userHistory', function() {
 		}
 	};
 });
-
