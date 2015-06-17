@@ -32,5 +32,12 @@ router.post('/', function(req, res){
 //WHEN CREATING AN ORDER, HOW TO POPULATE AND FILL IT RIGHT AFTER PLACING PRODUCT ID's IN?
 
 router.put('/:id', function(req, res){
-    orderModel.update({_id: req.params.id}, req.body);
+    console.log("")
+    orderModel.update({_id: req.params.id}, req.body).then(function(doc){
+        console.log("doc", doc)
+        res.send(doc)
+    }, function(err){
+        console.log("err", err)
+        res.status(500).send(err)
+    });
 });
