@@ -22,12 +22,8 @@ app.controller('UserController', function($scope, $state, AuthService, UserFacto
     $scope.showSettings = false;
     $scope.isAnAdmin = false;
     $scope.showUsers = false;
-<<<<<<< HEAD
     $scope.adminOrders = false;
-=======
     $scope.orders= null;
-    
->>>>>>> b9e7b0c07795ac6d55e5a096e0399dbf30753fe9
     AuthService.getLoggedInUser().then(function(user) {
         $scope.theUser = user;
         $scope.isAnAdmin = user.isAdmin;
